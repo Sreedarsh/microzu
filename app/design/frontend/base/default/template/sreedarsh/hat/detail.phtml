@@ -52,7 +52,11 @@ $customerData = Mage::getModel('customer/customer')->load($profile->getId())->ge
                     <?php endif; ?>
                 </ol>
                 </dd></dl> 
+                
+                <?php if($profile->getAvatarImage()):?>
             <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($profile->getAvatarImage(), '/');?>" style="width:250px" />
+            <?php endif;?>
+            
             <br><br>
             <dt class="last odd">Request a service</dt>
             <dd class="last odd">
@@ -97,10 +101,10 @@ $customerData = Mage::getModel('customer/customer')->load($profile->getId())->ge
         <!-- third column-->
         <div class="third-content content"><ul class="hireprof-extra" style="color:orange">
        <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro1.png"/>Download resume</li>
-       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro2.png"/>Chat with Arawind</li>
-       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro3.png"/><a href="mailto:<?php echo $customerData['email'];?>" style="color:orange">Leave message for Arawind</a></li>
-       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro4.png"/>Schedule an interview with Arawind</li>
-       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro5.png"/>Arawind past performance review</li>
+       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro2.png"/>Chat with Technician</li>
+       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro3.png"/><a href="mailto:<?php echo $customerData['email'];?>" style="color:orange">Leave message for Technician</a></li>
+       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro4.png"/>Schedule an interview with Technician</li>
+       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro5.png"/>Technician's past performance review</li>
       </ul></div>
         <!--end thirdcolumn-->
     </div>

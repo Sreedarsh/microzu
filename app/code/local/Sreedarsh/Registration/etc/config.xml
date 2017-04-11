@@ -1,4 +1,3 @@
-
 <!--/**
  * Microzu registraion
  *
@@ -58,7 +57,16 @@
                 </connection>
             </sreedarsh_registration_setup>            
         </resources>
-        
+        <events>
+            <catalog_product_type_prepare_full_options>
+                <observers>
+                    <membership_one_only>
+                        <class>Sreedarsh_Registration_Model_Observer</class>
+                        <method>onlyOne</method>
+                    </membership_one_only>
+                </observers>
+            </catalog_product_type_prepare_full_options>
+        </events>
         
     </global>
     
@@ -85,18 +93,7 @@
     
      
       
-        <frontend>
-        <events>
-            <catalog_product_type_prepare_full_options>
-                <observers>
-                    <membership_one_only>
-                        <class>Sreedarsh_Registration_Model_Observer</class>
-                        <method>onlyOne</method>
-                    </membership_one_only>
-                </observers>
-            </catalog_product_type_prepare_full_options>
-        </events>
-    </frontend> 
+      
   
   
 

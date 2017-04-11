@@ -9,7 +9,7 @@
 ?>
 
 <?php 
-$customer = Mage::getModel('customer/customer');
+$customer = $this->customer();
 $tech = $this->getTech();
 ?>
 
@@ -21,18 +21,25 @@ $tech = $this->getTech();
                 
                   <?php if(count($tech) > 0):?>
                   
-               <?php foreach($tech as $user):?> 
-                <?php   $member = $customer->load($user->getCustomerId()); ?>   
+                        <?php foreach($tech as $user):?> 
+                <?php $member = $customer->load($user->getCustomerId()); ?>   
                    
                <div class="col-md-2 col-sm-6">
                     <div class="our-team">
-                        
-                        <div class="team-content">                            
+                        <div class="team-content">  
+                        <?php if($member->getVerifiedMember()):?>        
+                        <div class="verified-label">VERIFIED</div>
+                        <?php endif;?>
+                                          
                             <div class="pic"> 
+                           
                             <?php if(!$member->getAvatarImage()):?>
                             <img alt="avatar" src="http://www.jainvivah.in/themes/site/images/d.png">
                             <?php else :?>
-                            <img class="col-md-6" style="width:200px;border: 1px solid #eeeeee;"src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($member->getAvatarImage(), '/'); ?>" />
+                            
+                            <img style="width:200px;border: 1px solid #eeeeee;" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($member->getAvatarImage(), '/');?>"/>
+                            
+                            
                             <?php endif;?>
                         </div>
                             <h3 class="post-title"><?php echo $member->getFirstname(); ?><small><?php echo $this->getCatname($member->getMemberCategory()); ?></small></h3>
@@ -40,7 +47,9 @@ $tech = $this->getTech();
                         </div>
                     </div>
                 </div> 
-                 <?php endforeach;?>
+                <?php $member->unsetData();?>
+                 <?php endforeach;?> 
+                
                   <?php else:?>
                   
                   No technicians available in this category

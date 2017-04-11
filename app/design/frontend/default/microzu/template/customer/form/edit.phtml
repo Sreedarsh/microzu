@@ -92,6 +92,35 @@
             
 </li>
 
+  <li class="fields">
+                    
+                  
+                    
+                    
+                    <div class="field" style="color:#DE8A0C;">
+                        <div class="input-box">
+                    <?php
+                        $attribute = Mage::getModel('eav/config')->getAttribute('customer','member_category');
+                    ?>
+                    <label for="member_category"  style="font-weight: bold;"><?php echo $this->__('Category') ?></label>
+                    <div class="input-box"> 
+                    <?php $category_id = $this->getCustomer()->getMemberCategory();?>
+                        <select name="member_category" id="member_category" class="<?php if($flag == 1){?>required-entry<?php } ?>">
+                            <?php
+                                 $options = $attribute->getSource()->getAllOptions(); 
+                              
+                                 foreach($options as $option){
+                            ?>
+                                <option value='<?php echo $option['value']?>' <?php if($category_id == $option['value']):?> selected="selected" <?php endif;?>>   <?php echo $this->__($option['label'])?></option>
+                            <?php } ?>
+                        </select>
+                     
+                       </div>
+                    <div class="field ">
+                        <p>This category is only for technicians.</p>
+                    </div>
+                </li>
+
 
 <!--<li>
             <label for="resume"><?php echo $this->__('Technician resume') ?></label>

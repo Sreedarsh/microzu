@@ -233,10 +233,13 @@ $technician = $this->retriveAllTech();
         <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[0]));?>"> <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech0->getAvatarImage(), '/'); ?>" /> </a>
       <p><?php echo $tech0->getName();?></p>
       <p><?php echo ($this->getCatname($tech0->getMemberCategory()) != "")?$this->getCatname($tech0->getMemberCategory()):'&nbsp;';?></p>
+      
+      <?php $customer->unsetData();?>
       <?php $tech1 = $customer->load($tech_array[1]);?>
       <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[1]));?>"> <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech1->getAvatarImage(), '/'); ?>" /> </a>
       <p><?php echo $tech1->getName();?></p>
       <p><?php echo ($this->getCatname($tech1->getMemberCategory()) != "")?$this->getCatname($tech1->getMemberCategory()):'&nbsp;';?></p>
+      <?php $customer->unsetData();?>
     </div>
         
     <div>
@@ -244,10 +247,12 @@ $technician = $this->retriveAllTech();
         <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[2]));?>"> <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech2->getAvatarImage(), '/'); ?>" /> </a>
       <p><?php echo $tech2->getName();?></p>
       <p><?php echo ($this->getCatname($tech2->getMemberCategory()) != "")?$this->getCatname($tech2->getMemberCategory()):'&nbsp;';?></p>
+      <?php $customer->unsetData();?>
       <?php $tech3 = $customer->load($tech_array[3]);?>
       <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[3]));?>"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech3->getAvatarImage(), '/'); ?>" /> </a>
       <p><?php echo $tech3->getName();?></p>
       <p><?php echo ($this->getCatname($tech3->getMemberCategory()) != "")?$this->getCatname($tech3->getMemberCategory()):'&nbsp;';?></p>
+      <?php $customer->unsetData();?>
     </div>
         
      <?php if($technician->count() > 4):?>
@@ -257,11 +262,12 @@ $technician = $this->retriveAllTech();
         <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[4]));?>"> <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech4->getAvatarImage(), '/'); ?>" /> </a>
       <p><?php echo $tech4->getName();?></p>
       <p><?php echo ($this->getCatname($tech4->getMemberCategory()) !="")?$this->getCatname($tech4->getMemberCategory()):'&nbsp;';?></p>
-      
+      <?php $customer->unsetData();?>
       <?php $tech5 = $customer->load($tech_array[5]);?>
       <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[5]));?>"> <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech5->getAvatarImage(), '/'); ?>" /> </a>
       <p><?php echo $tech5->getName();?></p>
       <p><?php echo ($this->getCatname($tech5->getMemberCategory()) != "")?$this->getCatname($tech5->getMemberCategory()):'&nbsp;';?></p>    
+      <?php $customer->unsetData();?>
     </div>
         
     <div>
@@ -269,11 +275,13 @@ $technician = $this->retriveAllTech();
         <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[6]));?>">  <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech6->getAvatarImage(), '/'); ?>" /> </a>
       <p><?php echo $tech6->getName();?></p>
       <p><?php echo ($this->getCatname($tech6->getMemberCategory()) != "")?$this->getCatname($tech6->getMemberCategory()):'&nbsp;';?></p>
+      <?php $customer->unsetData();?>
       
       <?php $tech7 = $customer->load($tech_array[7]);?>
       <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[7]));?>"> <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech7->getAvatarImage(), '/'); ?>" /> </a>
       <p><?php echo $tech7->getName();?></p>
       <p><?php echo ($this->getCatname($tech7->getMemberCategory()) != "")?$this->getCatname($tech7->getMemberCategory()):'&nbsp;';?></p>
+      <?php $customer->unsetData();?>
     </div>
         
       <?php endif;?>  

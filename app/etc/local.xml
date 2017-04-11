@@ -28,10 +28,10 @@
 <config>
     <global>
         <install>
-            <date><![CDATA[Tue, 04 Apr 2017 10:22:40 +0000]]></date>
+            <date><![CDATA[Thu, 12 Jan 2017 10:47:47 +0000]]></date>
         </install>
         <crypt>
-            <key><![CDATA[c658fcdc88cabeccf987d44847e91b74]]></key>
+            <key><![CDATA[f1ac382583767cf010c7272ea9705bef]]></key>
         </crypt>
         <disable_local_modules>false</disable_local_modules>
         <resources>
@@ -41,9 +41,9 @@
             <default_setup>
                 <connection>
                     <host><![CDATA[localhost]]></host>
-                    <username><![CDATA[sreedarsh]]></username>
-                    <password><![CDATA[sreedarsh]]></password>
-                    <dbname><![CDATA[new_microzu]]></dbname>
+                    <username><![CDATA[y2cloud_user3]]></username>
+                    <password><![CDATA[!Denver12]]></password>
+                    <dbname><![CDATA[y2cloud_magento3]]></dbname>
                     <initStatements><![CDATA[SET NAMES utf8]]></initStatements>
                     <model><![CDATA[mysql4]]></model>
                     <type><![CDATA[pdo_mysql]]></type>

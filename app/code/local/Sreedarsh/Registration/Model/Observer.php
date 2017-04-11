@@ -21,8 +21,8 @@ class Sreedarsh_Registration_Model_Observer{
             } 
         }
         if($flag){
-            Mage::throwException('You can purchase only one membership at a time.');
-
+            Mage::throwException('You can only buy one product at a time.');
+         
         }
        
         
