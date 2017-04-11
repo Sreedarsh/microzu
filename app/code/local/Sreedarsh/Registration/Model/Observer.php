@@ -22,7 +22,7 @@ class Sreedarsh_Registration_Model_Observer{
         }
         if($flag){
             Mage::throwException('You can purchase only singles membership at a time.');
-         
+
         }
        
         
