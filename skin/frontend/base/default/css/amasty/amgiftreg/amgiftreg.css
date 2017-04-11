@@ -1,0 +1,47 @@
+.v-middle {
+    display: inline;
+}
+
+.gift-event-image-container {
+    width: 50%;
+    vertical-align: top;
+}
+
+
+.gift-event-image-container img {
+    width: 100%;
+}
+
+.gift-event-text-container {
+    /*padding-left: 22px;*/
+}
+
+.table-event-view {
+    border-collapse: separate;
+    border-spacing: 10px;
+    border: 0px;
+}
+
+.gift-event-nav-links {
+    background: none repeat scroll 0% 0% #F4F4F4;
+    padding: 10px;
+}
+
+.received-count {
+    font-size: large;
+}
+
+.products-grid .actions
+{
+    bottom: 8px;
+}
+
+.amgiftreg-select-time
+{
+    float: none !important;
+}
+
+
+.amgiftreg-margin {
+    margin-bottom: -20px;
+}

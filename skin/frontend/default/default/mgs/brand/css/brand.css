@@ -1,0 +1,86 @@
+/*==================== Shop by Brand ===============*/
+.featured-brand-container:after,
+.feature-brand-image:after{
+	content:" ";
+	display:table;
+	clear:both;
+}
+.feature-brand-title.page-title h2{
+	font-size: 20px;
+	font-weight:400;
+	border-bottom:none;
+	margin-bottom: 30px;
+}
+ul li.feature-brand-item,
+.brands-list .brand-item{
+	float:left;
+	display:inline-block;
+	margin-right:15px;
+	margin-left:15px;
+}
+li:first-child.feature-brand-item .feature-brand-image img{
+	width:auto !important;
+	height: auto !important;
+}
+.feature-brand-item .feature-brand-image img,
+.brand-item .brand-image img{
+	max-w:150px;
+	height: auto !important;
+}
+.feature-brand-item .feature-brand-image,
+.brand-item .brand-image{
+	margin-bottom: 15px;
+	min-height: 60px;
+}
+.feature-brand-item .feature-brand-title,
+.brand-item .brand-title{
+	font-size: 15px;
+	text-align:center;
+	margin-top:10px;
+}
+.brand-page-title{
+	margin-top:40px;
+}
+.brand-page-title.page-title h1{
+	padding-bottom: 15px;
+	font-size: 30px;
+	font-weight: 400;
+	color:#3399cc;
+}
+.featured-brand-container{margin-bottom: 50px;}
+#brands-search-form  input{
+	float:left;
+	margin-right:10px;
+	height:33px;
+}
+.brands-search-form {
+	margin-bottom: 15px;
+}
+.chars-filter{
+	min-width: 100px;
+}
+.chars-filter li{
+	display:inline-block;
+}
+.brands-container .block-content{
+	margin-bottom: 30px;
+}
+.product-view .product-brand-inner img{
+	max-width: 150px;
+	height: auto !important;
+}
+.product-view .product-brand{
+	margin-bottom: 15px;
+}
+.block-brand-related .block-title h3 strong{
+	color:#636363;
+	font-family: "Raleway","Helvetica Neue",Verdana,Arial,sans-serif;
+	font-size: 24px;
+	font-weight: 400;
+	line-height:1.2;
+	margin:15px 0 20px;
+	text-rendering:optimizelegibility;
+	text-transform: uppercase;
+	float:left;
+}
+.product-related-brand{clear:left;}
