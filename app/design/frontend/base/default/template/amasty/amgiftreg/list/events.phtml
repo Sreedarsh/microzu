@@ -1,0 +1,53 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+
+<?php $_lists = $this->getEvents();?>
+
+
+<?php echo $this->getPagerHtml(); ?>
+<?php if(sizeof($_lists->getItems()) > 0 ): ?>
+	<table cellspacing="0" class="data-table" id="my-lists-table">
+		<col width="20%" />
+		<col width="50%" />
+		<col width="30%"/>
+		<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th><?php echo $this->__('Registry Title') ?></th>
+			<th><?php echo $this->__('Event Date and Time') ?></th>
+		</tr>
+		</thead>
+		<tbody>
+		<?php $_odd = ''; ?>
+		<?php foreach ($_lists as $row): ?>
+			<?php
+			$image = $row->getImage();
+			if($image) {
+				$image = "<img src='{$image}' width='100'>";
+			}
+			?>
+			<tr class="<?php echo ($_odd = ($_odd ? 'odd' : '')) ?>">
+				<td><?php echo $image;?></td>
+				<td>
+					<a href="<?php echo $this->getUrl('*/*/view', array('id'=>$row->getId()))?>"><?php echo $this->htmlEscape($row->getEventTitle()) ?></a>
+				</td>
+				<td class="last">
+					<?php if($row->getEventDate() || $row->getEventTime()):?>
+						<?php if($row->getEventDate()) echo strftime('%b %d, %Y', strtotime($row->getEventDate()))?>
+						<?php if($row->getEventTime()) echo strftime('%H:%M', strtotime($row->getEventTime()))?>
+					<?php endif; ?>
+				</td>
+			</tr>
+		<?php endforeach; ?>
+		</tbody>
+	</table>
+	<script type="text/javascript">decorateTable('my-lists-table')</script>
+	<?php echo $this->getPagerHtml(); ?>
+<?php else: ?>
+	<p><?php echo $this->__('Fill in your favorites products to be able to purchase all of them with one click!'); ?></p>
+<?php endif; ?>

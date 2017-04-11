@@ -1,0 +1,211 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+-->
+<config>
+    <modules>
+        <Amasty_Giftregistry>
+            <version>1.0.0</version>
+        </Amasty_Giftregistry>
+    </modules>
+
+    <global>
+        <models>
+            <amgiftreg>
+                <class>Amasty_Giftregistry_Model</class>
+                <resourceModel>amgiftreg_mysql4</resourceModel>
+            </amgiftreg>
+            <amgiftreg_mysql4>
+                <class>Amasty_Giftregistry_Model_Mysql4</class>
+                <entities>
+                    <event>
+                        <table>am_gift_event</table>
+                    </event>
+                    <item>
+                        <table>am_gift_item</table>
+                    </item>
+                    <ordered_item>
+                        <table>am_gift_ordered_item</table>
+                    </ordered_item>
+                    <file>
+                        <table>am_gift_file</table>
+                    </file>
+                </entities>
+            </amgiftreg_mysql4>
+        </models>
+
+        <resources>
+            <amgiftreg_setup>
+                <setup>
+                    <module>Amasty_Giftregistry</module>
+                </setup>
+            </amgiftreg_setup>
+
+            <amgiftreg_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </amgiftreg_write>
+
+            <amgiftreg_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </amgiftreg_read>
+        </resources>
+
+        <template>
+            <email>
+                <amgiftreg_email_email_template translate="label" module="amgiftreg">
+                    <label>Share Gift Registry</label>
+                    <file>amasty_giftregistry_share.html</file>
+                    <type>html</type>
+                </amgiftreg_email_email_template>
+            </email>
+        </template>
+
+        <blocks>
+            <amgiftreg>
+                <class>Amasty_Giftregistry_Block</class>
+            </amgiftreg>
+        </blocks>
+
+        <helpers>
+            <amgiftreg>
+                <class>Amasty_Giftregistry_Helper</class>
+            </amgiftreg>
+        </helpers>
+
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <amgiftreg_ordered_item>
+                        <type>model</type>
+                        <class>amgiftreg/orderedItem</class>
+                        <method>eventOrderItem</method>
+                    </amgiftreg_ordered_item>
+                </observers>
+            </sales_order_place_after>
+        </events>
+    </global>
+
+
+    <frontend>
+        <routers>
+            <amgiftreg>
+                <use>standard</use>
+                <args>
+                    <module>Amasty_Giftregistry</module>
+                    <frontName>amgiftreg</frontName>
+                </args>
+            </amgiftreg>
+        </routers>
+
+        <translate>
+            <modules>
+                <Amasty_Giftregistry>
+                    <files>
+                        <default>Amasty_Giftregistry.csv</default>
+                    </files>
+                </Amasty_Giftregistry>
+            </modules>
+        </translate>
+
+        <layout>
+            <updates>
+                <amgiftreg module="Amasty_Giftregistry">
+                    <file>amasty/amgiftreg/amgiftreg.xml</file>
+                </amgiftreg>
+            </updates>
+        </layout>
+    </frontend>
+
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Amasty_Giftregistry before="Mage_Adminhtml">Amasty_Giftregistry_Adminhtml</Amasty_Giftregistry>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <amgiftreg>
+                    <file>amasty/amgiftreg/amgiftreg.xml</file>
+                </amgiftreg>
+            </updates>
+        </layout>
+        <menu>
+            <customer>
+                <children>
+                    <amgiftreg>
+                        <title>Gift Registries</title>
+                        <sort_order>110</sort_order>
+                        <action>adminhtml/amgiftregistry/index</action>
+                    </amgiftreg>
+                </children>
+            </customer>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <customer>
+                            <children>
+                                <amgiftreg>
+                                    <title>Gift Registries</title>
+                                </amgiftreg>
+                            </children>
+                        </customer>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <amgiftreg>
+                                            <title>Gift Registry Section</title>
+                                        </amgiftreg>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+            <modules>
+                <Amasty_Giftregistry>
+                    <files>
+                        <default>Amasty_Giftregistry.csv</default>
+                    </files>
+                </Amasty_Giftregistry>
+            </modules>
+        </translate>
+    </adminhtml>
+
+
+    <default>
+        <amgiftreg>
+            <general>
+                <active>1</active>
+            </general>
+            <email>
+                <email_identity>general</email_identity>
+                <email_template>amgiftreg_email_email_template</email_template>
+            </email>
+        </amgiftreg>
+    </default>
+</config>

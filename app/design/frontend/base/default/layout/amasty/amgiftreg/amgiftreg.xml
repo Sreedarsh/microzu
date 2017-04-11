@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+-->
+
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>calendar/calendar-win2k-1.css</name>
+            </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>calendar/calendar.js</name>
+            </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>calendar/calendar-setup.js</name>
+            </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>amasty/amgiftreg/calendar.settings.js</name>
+            </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>amasty/amgiftreg/json2.js</name>
+            </action>
+
+            <action method="addCss"><stylesheet>css/amasty/amgiftreg/amgiftreg.css</stylesheet></action>
+        </reference>
+
+        <reference name="footer_links">
+            <action ifconfig="amgiftreg/general/active" method="addLink" >
+                <label>Gift Registries</label>
+                <url>amgiftreg/gift/list</url>
+                <title>My Gift Registries Title</title>
+                <prepare>1</prepare>
+            </action>
+        </reference>
+    </default>
+
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action ifconfig="amgiftreg/general/active" method="addLink" translate="label" module="amgiftreg" >
+                <name>amgiftreg</name>
+                <path>amgiftreg/event</path>
+                <label>My Gift Registries</label>
+            </action>
+        </reference>
+    </customer_account>
+
+    <amgiftreg_event_index>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="amgiftreg/index" name="amgiftreg.index" template="amasty/amgiftreg/index.phtml"/>
+        </reference>
+    </amgiftreg_event_index>
+
+
+    <amgiftreg_event_edit>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="amgiftreg/edit" name="amgiftreg.edit" template="amasty/amgiftreg/edit.phtml" />
+        </reference>
+    </amgiftreg_event_edit>
+
+    <amgiftreg_event_view>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="amgiftreg/editorView" name="amgiftreg.event_customer_view" template="amasty/amgiftreg/event_customer_view.phtml" />
+            <block type="amgiftreg/items" name="amgiftreg.items" template="amasty/amgiftreg/event_customer_items.phtml" />
+        </reference>
+    </amgiftreg_event_view>
+
+
+    <amgiftreg_event_received>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="amgiftreg/editorView" name="amgiftreg.event_customer_view" template="amasty/amgiftreg/event_customer_view.phtml" />
+            <block type="amgiftreg/orderedItems" name="amgiftreg.orderedItems" template="amasty/amgiftreg/ordered_items.phtml" />
+        </reference>
+    </amgiftreg_event_received>
+
+    <amgiftreg_event_share>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="amgiftreg/editorView" name="amgiftreg.event_customer_view" template="amasty/amgiftreg/event_customer_view.phtml" />
+            <block type="amgiftreg/share" name="amgiftreg.share" template="amasty/amgiftreg/event_share.phtml" />
+        </reference>
+    </amgiftreg_event_share>
+
+
+
+    <amgiftreg_gift_list>
+        <remove name="right"/>
+
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+
+        <reference name="breadcrumbs">
+            <action method="addCrumb">
+                <crumbName>Home</crumbName>
+                <crumbInfo>
+                    <label>Home</label>
+                    <title>Home</title>
+                    <link>/</link>
+                </crumbInfo>
+            </action>
+            <action method="addCrumb">
+                <crumbName>Gift Registries</crumbName>
+                <crumbInfo>
+                    <label>Gift Registries</label>
+                    <title>Gift Registries</title>
+                </crumbInfo>
+            </action>
+        </reference>
+
+        <reference name="left">
+            <block type="amgiftreg/popular" name="amgiftreg.left.popular" template="amasty/amgiftreg/popular_gifts.phtml" />
+        </reference>
+
+        <reference name="content">
+            <block type="amgiftreg/list" name="amgiftreg.list.search" template="amasty/amgiftreg/list/search.phtml" />
+            <block type="amgiftreg/list" name="amgiftreg.list.events" template="amasty/amgiftreg/list/events.phtml" />
+        </reference>
+    </amgiftreg_gift_list>
+
+
+
+    <amgiftreg_gift_view>
+        <remove name="right"/>
+
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+
+        <reference name="head">
+            <block type="amgiftreg/view_head" name="amgiftreg.view.head" template="amasty/amgiftreg/view_head.phtml" />
+        </reference>
+        <reference name="left">
+            <block type="amgiftreg/popular" name="amgiftreg.left.popular" template="amasty/amgiftreg/popular_gifts.phtml" />
+        </reference>
+        <reference name="content">
+            <block type="amgiftreg/view" name="amgiftreg.view" template="amasty/amgiftreg/view.phtml" />
+            <block type="amgiftreg/items" name="amgiftreg.items" template="amasty/amgiftreg/items.phtml" />
+        </reference>
+    </amgiftreg_gift_view>
+
+    <amgiftreg_gift_password>
+        <reference name="content">
+            <block type="amgiftreg/password" name="amgiftreg.view.password" template="amasty/amgiftreg/password.phtml" />
+        </reference>
+    </amgiftreg_gift_password>
+
+
+    <catalog_product_view>
+        <reference name="product.info.addto">
+            <action ifconfig="amgiftreg/general/active" method="setTemplate"><template>amasty/amgiftreg/rewrite/catalog_product_view_addto.phtml</template></action>
+        </reference>
+    </catalog_product_view>
+
+
+    <catalog_category_default>
+       <update handle="product_list.after"/>
+        <reference name="content">
+            <block type="amgiftreg/product" name="amgiftreg_product_list" template="amasty/amgiftreg/product_list.phtml" />
+        </reference>
+    </catalog_category_default>
+
+    <catalog_category_layered>
+        <update handle="product_list.after"/>
+        <reference name="content">
+            <block type="amgiftreg/product" name="amgiftreg_product_list" template="amasty/amgiftreg/product_list.phtml" />
+        </reference>
+    </catalog_category_layered>
+
+    <catalogsearch_result_index>
+        <update handle="product_list.after"/>
+        <reference name="content">
+            <block type="amgiftreg/product" name="amgiftreg_product_list" template="amasty/amgiftreg/product_list.phtml" />
+        </reference>
+    </catalogsearch_result_index>
+
+    <catalogsearch_advanced_result>
+        <update handle="product_list.after"/>
+        <reference name="content">
+            <block type="amgiftreg/product" name="amgiftreg_product_list" template="amasty/amgiftreg/product_list.phtml" />
+        </reference>
+    </catalogsearch_advanced_result>
+
+    <tag_product_list>
+        <update handle="product_list.after"/>
+        <reference name="content">
+            <block type="amgiftreg/product" name="amgiftreg_product_list" template="amasty/amgiftreg/product_list.phtml" />
+        </reference>
+    </tag_product_list>
+
+
+
+
+
+
+
+
+
+    <checkout_onepage_index>
+        <reference name="content">
+            <block type="amgiftreg/onepage_injector" name="checkout.onepage.injector" as="giftregistry_injector" template="amasty/amgiftreg/onepage_injector.phtml"/>
+        </reference>
+    </checkout_onepage_index>
+
+
+
+</layout>

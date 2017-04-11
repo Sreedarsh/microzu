@@ -1,0 +1,103 @@
+
+<!--/**
+ * Microzu registraion
+ *
+ * @category      Microzu
+ * @package       Sreedarsh_Registration
+ * @author Sreedarsh <sreedarsh88@gmail.com>
+ */-->
+<config>
+    <modules>
+        <Sreedarsh_Registration>
+            <version>0.0.1</version>
+        </Sreedarsh_Registration>
+    </modules> 
+    
+    <global>   
+            
+<!--        <resources>
+            <fingent_cr_setup>
+                <setup>
+                    <module>Fingent_Cr</module>
+                    <class>Fingent_Cr_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </fingent_cr_setup>            
+        </resources>-->
+        
+       <models>
+            <sreedarsh_registration>
+                <class>Sreedarsh_Registration_Model</class>
+            </sreedarsh_registration>
+            
+        </models> -
+
+        <blocks>
+            <sreedarsh_registration>
+                <class>Sreedarsh_Registration_Block</class>
+            </sreedarsh_registration>
+        </blocks>
+        
+        <helpers>
+            <sreedarsh_registration>
+                <class>Sreedarsh_Registration_Helper</class>
+            </sreedarsh_registration>
+        </helpers>
+        
+        
+        <resources>
+            <sreedarsh_registration_setup>
+                <setup>
+                    <module>Sreedarsh_Registration</module>
+                    <class>Sreedarsh_Registration_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </sreedarsh_registration_setup>            
+        </resources>
+        
+        
+    </global>
+    
+    <frontend>
+        <routers>
+            <sreedarsh_registration>
+                <use>standard</use>
+                <args>
+                    <module>Sreedarsh_Registration</module>
+                    <frontName>shopper</frontName>
+                </args>
+                
+            </sreedarsh_registration>
+        </routers>
+        <layout>
+            <updates>
+                <sreedarsh_registration>
+                    <file>sreedarsh_registration.xml</file>
+                </sreedarsh_registration>
+            </updates>
+        </layout>
+        
+    </frontend>
+    
+     
+      
+        <frontend>
+        <events>
+            <catalog_product_type_prepare_full_options>
+                <observers>
+                    <membership_one_only>
+                        <class>Sreedarsh_Registration_Model_Observer</class>
+                        <method>onlyOne</method>
+                    </membership_one_only>
+                </observers>
+            </catalog_product_type_prepare_full_options>
+        </events>
+    </frontend> 
+  
+  
+
+</config>

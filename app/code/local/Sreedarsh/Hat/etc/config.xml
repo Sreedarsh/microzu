@@ -1,0 +1,139 @@
+<!--/**
+ * Hire A Technician
+ *
+ * @category      Sreedarsh
+ * @package       Sreedarsh_Hat
+ * @author Sreedarsh <sreedarsh88@gmail.com>
+ */-->
+<config>
+    <modules>
+        <Sreedarsh_Hat>
+            <version>0.0.1</version>
+        </Sreedarsh_Hat>
+    </modules> 
+    
+    <global>   
+            
+       <resources>
+            <sreedarsh_hat_setup>
+                <setup>
+                    <module>Sreedarsh_Hat</module>
+                    <class>Sreedarsh_Hat_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </sreedarsh_hat_setup>            
+        </resources>
+        
+       <models>
+            <sreedarsh_hat>
+                <class>Sreedarsh_Hat_Model</class>
+                <resourceModel>hat_resource</resourceModel>
+            </sreedarsh_hat>
+            <hat_resource>
+                <class>Sreedarsh_Hat_Model_Resource</class>
+                <entities>
+                    <parent>
+                        <table>hat_parent_category</table>
+                    </parent>
+                    <child>
+                        <table>hat_child_category</table>
+                    </child>              
+                    <tech>
+                        <table>hat_technician</table>
+                    </tech>
+                </entities>
+            </hat_resource>
+        </models> 
+
+        <blocks>
+            <sreedarsh_hat>
+                <class>Sreedarsh_Hat_Block</class>
+            </sreedarsh_hat>
+        </blocks>
+        
+        <helpers>
+            <sreedarsh_hat>
+                <class>Sreedarsh_Hat_Helper</class>
+            </sreedarsh_hat>
+        </helpers>
+        
+        
+<!--        <resources>
+            <sreedarsh_hat_setup>
+                <setup>
+                    <module>Sreedarsh_Hat</module>
+                    <class>Sreedarsh_Hat_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </sreedarsh_hat_setup>            
+        </resources>-->
+        
+        <events>
+            <customer_register_success>
+                <observers>
+                    <sreedarsh_hat_observer>
+                    
+                        <class>Sreedarsh_Hat_Model_Observer</class>
+                        <method>groupPackage</method>
+                    </sreedarsh_hat_observer>
+                </observers>
+            </customer_register_success>
+            
+            <customer_save_after>
+                <observers>
+                    <sreedarsh_hat_customer_observer>       
+                        <class>Sreedarsh_Hat_Model_Observer</class>
+                        <method>techCategory</method>
+                    </sreedarsh_hat_customer_observer>
+                </observers>
+            </customer_save_after>                    
+                                                                                                             
+        </events>   
+        
+    </global>
+    
+    <frontend>
+        <routers>
+            <sreedarsh_hat>
+                <use>standard</use>
+                <args>
+                    <module>Sreedarsh_Hat</module>
+                    <frontName>hireme</frontName>
+                </args>
+            </sreedarsh_hat>
+        </routers>
+        
+        
+        
+        <layout>
+            <updates>
+                <sreedarsh_hat>
+                    <file>sreedarsh_hat.xml</file>
+                </sreedarsh_hat>
+            </updates>
+        </layout>
+        
+    </frontend> 
+  
+  
+<!--    <adminhtml>
+        <layout>
+            <updates>
+                <fingent_cr>
+                    <file>fingent_cr.xml</file>
+                </fingent_cr>
+            </updates>
+        </layout>
+        <menu>  
+            <fingent_cr translate="title" module="fingent_cr">
+                <title>Sample requests</title>
+                <sort_order>83</sort_order>  
+                <action>adminhtml/cr/index</action>         
+            </fingent_cr>
+        </menu>
+    </adminhtml>  -->
+</config>

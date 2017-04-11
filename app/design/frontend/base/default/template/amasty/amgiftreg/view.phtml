@@ -1,0 +1,71 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+<?php $_event = $this->getEvent(); ?>
+<div class="page-head button-level">
+	<h3>
+		<?php echo $_event->getEventTitle() ?>
+		<small>
+			<?php if($_event->getEventDate()):?>
+				(<?php echo strftime('%b %d, %Y', strtotime($_event->getEventDate()))?>)
+			<?php endif;?>
+		</small>
+	</h3>
+</div>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<table  class="table-event-view">
+	<tr>
+<?php
+$image = $_event->getImage();
+if($image) {
+	$image = "<td class='gift-event-image-container'><img src='{$image}'></td>";
+}
+echo $image;
+?>
+<td class="gift-event-text-container">
+
+	<?php if($_event->getEventHosts()):?>
+		<p>
+			<b><?php echo $this->__('Event hosts');?></b><br>
+			<?php echo nl2br($this->escapeHtml($_event->getEventHosts()))?>
+		</p>
+		<br>
+	<?php endif; ?>
+
+	<?php if($_event->getEventDate() || $_event->getEventTime()):?>
+	<p>
+		<b><?php echo $this->__('Event Date and Time');?></b><br>
+		<?php if($_event->getEventDate()) echo strftime('%b %d, %Y', strtotime($_event->getEventDate()))?>
+		<?php if($_event->getEventDate() && $_event->getEventTime()) echo "<br>";?>
+		<?php if($_event->getEventTime()) echo strftime('%H:%M', strtotime($_event->getEventTime()))?>
+	</p>
+	<br>
+	<?php endif; ?>
+
+
+
+	<?php if($_event->getEventLocation()):?>
+		<p>
+			<b><?php echo $this->__('Event location');?></b><br>
+			<?php echo nl2br($this->escapeHtml($_event->getEventLocation())); ?>
+		</p>
+		<br>
+	<?php endif; ?>
+<td>
+	</tr>
+	</table>
+<br>
+<div>
+	<?php if($_event->getAdditionalInformation()):?>
+		<p>
+			<b><?php echo $this->__('Additional Information');?></b><br>
+			<?php echo $this->escapeHtml($_event->getAdditionalInformation())?>
+		</p>
+		<br>
+	<?php endif; ?>
+</div>

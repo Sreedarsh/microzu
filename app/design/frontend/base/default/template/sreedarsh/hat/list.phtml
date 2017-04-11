@@ -1,0 +1,71 @@
+<?php
+/**
+ * Hire A Technician
+ *
+ * @category      Sreedarsh
+ * @package       Sreedarsh_Hat
+ * @author Sreedarsh <sreedarsh88@gmail.com>
+ */
+?>
+<style>
+.Directory-item 
+{
+padding:5px 5px 5px 0px;
+font-size:15px;
+
+white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+.Directory-title {
+	font-size: 19px;
+	margin-bottom: 20px;
+	margin-top: 30px;
+	display: inline-block;
+	width: 100%;
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 15px;
+}
+.Directory-item::before {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-right: 8px;
+    margin-bottom: 2px;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 5px solid #f39609;
+    content: "";
+}
+</style>
+
+<?php $parent = $this->retriveParentList();
+
+?>
+    <div class="container tech">
+        
+        <h2 style="padding:20px 0;"> Hire a Technician </h2>
+              <div class="row"  style="padding:0px;">
+               <?php 
+               
+               
+foreach  ($parent as $category) {
+    //Display the sub category information using $category values like $category->cat_name
+    echo '<h3 class="Directory-title">'.$category->getName().'</h3>';
+   echo '<div class="col-md-12" style="padding:0px;">';
+     
+    foreach ($this->retriveChildList($category->getId()) as $post) {
+      echo '<div class="col-md-2 Directory-item col-sm-4 col-xs-12">';
+        echo '<a href="'.Mage::getUrl('hireme/technician/skill', array('cat'=>$post->getId())).'">'.$post->getName().'</a>'.' <span style="color:#f39609">('.$this->getCount($post->getId()).')</span>';   
+         echo '</div>';
+
+    }  
+    echo '</div>';
+    }
+                
+               ?>  
+                
+            </div>
+        </div>

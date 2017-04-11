@@ -1,0 +1,99 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+<?php /* @var $this Amasty_Giftregistry_Block_Share */?>
+<?php /* @var $helper Amasty_GiftRegistry_Helper_Data */?>
+<?php
+$helper = Mage::helper('amgiftreg');
+$_event = $this->getEvent();
+$shareUrl = $helper->getRegistryUrl($this->getEvent()->getId());
+
+$shareText = $helper->getRegistryShareText($_event->getId());
+//$shareText = $this->__("Hello Guys, I have a Gift Registry at %s. Thank you for the gifts.", $shareUrl);
+?>
+<br>
+
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo " "//$shareUrl; ?>" data-text="<?php echo $shareText; ?>" data-size="large" data-count="none">Tweet</a>
+<a
+	href='javascript:ShareFacebook("https://www.facebook.com/sharer/sharer.php?src=bm&u=<?php echo urlencode($shareUrl); ?>&p[summary]=<?php echo urlencode($shareText); ?>&v=1")'>
+	<img style="width: 30px; display:inline" src="<?php echo $this->getSkinUrl('images/amasty/amgiftreg/facebook_button.gif') ?>" alt="<?php echo $this->__('Share Facebook') ?>">
+
+</a>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+
+<script>
+	function ShareFacebook(url){
+		var popup = window.open(url,'','toolbar=0,status=0,width=626,height=436');
+	}
+
+</script>
+
+
+
+<br><br>
+Link to the registry: <?php echo $shareUrl; ?>
+<br><br>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<form action="<?php echo $this->getSendUrl(array("event_id" => $_event->getId())) ?>" id="form-validate" method="post" enctype="multipart/form-data">
+	<div class="fieldset">
+		<?php echo $this->getBlockHtml('formkey')?>
+		<h2 class="legend"><?php echo $this->__('Share via emails') ?></h2>
+		<ul class="form-list">
+			<li class="wide">
+				<label for="email_address" class="required"><em>*</em><?php echo $this->__('Email addresses, separated by commas') ?></label>
+				<div class="input-box">
+					<textarea name="emails" cols="60" rows="5" id="email_address" class="validate-emails"><?php echo $this->getEnteredData('emails', 'test@example.com,test2@example.com') ?></textarea>
+				</div>
+			</li>
+			<li class="wide">
+				<label for="email_address"><?php echo $this->__('Import csv') ?></label>
+				<div class="input-box">
+					<input type="file" name="emails_csv">
+				</div>
+			</li>
+			<li class="wide">
+				<label for="message"><?php echo $this->__('Message') ?></label>
+				<div class="input-box">
+					<textarea id="message" name="message" cols="60" rows="5"><?php echo $this->getEnteredData('message', "Hello.\r\n\r\nHere's my registry.\r\n\r\nThank you very much for the gifts.") ?></textarea>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="buttons-set form-buttons">
+		<p class="required"><?php echo $this->__('* Required Fields') ?></p>
+		<p class="back-link"><a href="<?php echo $this->getBackUrl(); ?>"><small>&laquo; </small><?php echo $this->__('All My Events')?></a></p>
+		<button type="submit" title="<?php echo $this->__('Share') ?>" class="button"><span><span><?php echo $this->__('Share') ?></span></span></button>
+	</div>
+</form>
+<script type="text/javascript">
+	//<![CDATA[
+	Validation.addAllThese([
+		['validate-emails', '<?php echo $this->__('Please enter a valid email addresses, separated by commas. For example johndoe@domain.com, johnsmith@domain.com.') ?>', function (v) {
+			if(Validation.get('IsEmpty').test(v)) {
+				return true;
+			}
+
+			var valid_regexp = /^[a-z0-9\._-]{1,30}@([a-z0-9_-]{1,30}\.){1,5}[a-z]{2,4}$/i;
+			var emails = v.split(',');
+
+			for (var i=0; i<emails.length; i++) {
+				if(!valid_regexp.test(emails[i].strip())) {
+					return false;
+				}
+			}
+
+			return true;
+		}]
+	]);
+	var dataForm = new VarienForm('form-validate', true);
+	//]]>
+</script>

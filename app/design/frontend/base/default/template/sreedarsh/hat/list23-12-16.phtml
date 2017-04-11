@@ -1,0 +1,51 @@
+<?php
+/**
+ * Hire A Technician
+ *
+ * @category      Sreedarsh
+ * @package       Sreedarsh_Hat
+ * @author Sreedarsh <sreedarsh88@gmail.com>
+ */
+?>
+
+
+<?php $parent = $this->retriveParentList();
+
+?>
+    <div class="container tech">
+        
+        <h2 style="padding:20px 0;"> Hire a Technician </h2>
+              <div class="row">
+               <?php 
+               
+               
+foreach  ($parent as $category) {
+    //Display the sub category information using $category values like $category->cat_name
+    echo '<h3>'.$category->getName().'</h3>';
+    echo '<ul>';
+
+    foreach ($this->retriveChildList($category->getId()) as $post) {
+      
+        echo '<li><a href="'.Mage::getUrl('hireme/technician/skill', array('cat'=>$post->getId())).'">'.$post->getName().'</a></li>';   
+    }  
+        echo '</ul>';
+    }
+               
+               ?>  
+                
+            </div>
+        </div>
+    
+    
+    
+        
+
+
+
+
+
+
+
+
+
+

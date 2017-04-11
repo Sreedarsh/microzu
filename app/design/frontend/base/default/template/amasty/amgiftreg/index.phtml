@@ -1,0 +1,56 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $_lists = $this->getLists(); ?>
+<div class="page-head"> 
+    <h3><?php echo $this->__('My Gift Registries') ?></h3>
+</div>
+
+<?php if(sizeof($_lists->getItems()) > 0 ): ?>
+    <?php echo $this->getPagerHtml(); ?>
+    <table cellspacing="0" class="data-table" id="my-lists-table">
+    <col width="1%" />
+    <col width="80%" />
+    <col width="19%"/>
+    <col />
+        <thead>
+            <tr>
+                <th><?php echo $this->__('ID') ?></th>
+                <th><?php echo $this->__('Registry Title') ?></th>
+                <th><?php echo $this->__('Actions') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php $_odd = ''; ?>
+            <?php foreach ($_lists as $row): ?>
+                <tr class="<?php echo ($_odd = ($_odd ? 'odd' : '')) ?>">
+                    <td><?php echo $row->getId() ?>&nbsp;</td>
+                    <td><a href="<?php echo $this->getUrl('*/*/view', array('id'=>$row->getId()))?>"><?php echo $this->htmlEscape($row->getEventTitle()) ?></a></td>
+                    <td class="last a-center">
+                        <a href="<?php echo $this->getUrl('*/*/edit', array('id'=>$row->getId()))?>"><?php echo $this->__('Edit') ?></a>
+
+                        <span class="separator2">|</span>
+                        <a class="link-remove" href="<?php echo $this->getUrl('*/*/remove', array('id'=>$row->getId()))?>"  onclick="return confirm('<?php echo $this->__('Are you sure?') ?>')" ><?php echo $this->__('Remove') ?></a>
+                        <br>
+                        <span class="separator">|</span>
+                        <a href="<?php echo $this->getUrl('*/gift/cart', array('event_id'=>$row->getId()))?>"><?php echo $this->__('Add to Cart') ?></a>
+
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <?php echo $this->getPagerHtml(); ?>
+    <script type="text/javascript">decorateTable('my-lists-table')</script>
+<?php else: ?>
+    <p><?php echo $this->__('Fill in your favorites products to be able to purchase all of them with one click!'); ?></p>
+<?php endif; ?>
+<div class="buttons-set">
+    <button onclick="setLocation('<?php echo $this->getUrl('*/*/edit') ?>')" class="button" type="button"><span><span><?php echo $this->__('Create New  Registry') ?></span></span></button>
+</div>

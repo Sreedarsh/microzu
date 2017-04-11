@@ -1,0 +1,143 @@
+<?php
+/**
+* Hire A Technician
+*
+* @category      Sreedarsh
+* @package       Sreedarsh_Hat
+* @author Sreedarsh <sreedarsh88@gmail.com>
+*/
+?>
+<?php $profile = $this->getProfileinfo();
+
+$customerData = Mage::getModel('customer/customer')->load($profile->getId())->getData();
+
+ ?>
+<br>
+
+<ul>
+    <div class="block block-layered-nav">
+        <div class="block-title">
+            <strong><span>Technician #<?php echo $profile->getId();?></span></strong>
+        </div>
+        <div class="box-cms-content">
+           <div class="first-content content"><!-- first column-->
+            <dl id="narrow-by-list">
+                <dt class="last odd">Profile</dt>
+                <dd class="last odd">
+                <ol>
+                    <li style="margin:5px 0px;">
+                        <a><span class="price">Name</span> : <span class="price"><b><?php echo $profile->getName();?></b></span></a>
+                        
+                    </li>
+                    <li  style="margin:5px 0px;">
+                        <a href="#"><span class="price">Verification Status</span> : <span><?php if($customerData['verified_member']==1){ echo 'Verified';} else {echo 'Non-Verified';} ?></span></a>
+                        
+                    </li>
+                    
+                    <li  style="margin:5px 0px;">
+                        <a><span class="price">Telephone</span> : <span class="price"><?php echo $this->getDetails($profile->getId())[0]; ?></span></a>
+                        
+                    </li>
+                    
+                    <li  style="margin:5px 0px;">
+                        <a><span class="price">Category</span> : <span class="price"><?php echo $this->getCatname($profile->getMemberCategory()); ?></span></a>
+                        
+                    </li>
+                    
+                    <?php if($profile->getProfileDesc()):?>
+                    <li  style="margin:5px 0px;">
+                        <a><span class="price">Additional Info</span> : <span class="price"><?php echo $profile->getProfileDesc(); ?></span></a>
+                        
+                    </li>
+                    <?php endif; ?>
+                </ol>
+                </dd></dl> 
+            <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($profile->getAvatarImage(), '/');?>" style="width:250px" />
+            <br><br>
+            <dt class="last odd">Request a service</dt>
+            <dd class="last odd">
+            
+            
+            <div id="formLoader" style="display:none;text-align: center;"><img src="http://loading.io/assets/img/hourglass.svg" class="loading" /></div>
+            <div id="formSuccess" style="display:none;"><b>Request Submitted successfully</b></div>
+            
+            
+            <form action="<?php echo Mage::getUrl('sreedarsh_hat/technician/save');?>" id="req_form" method="POST">
+                
+                <ol>
+                    <li>
+                        <label for="name">Name</label>
+                        <div><input type="text" id="firstname" name="firstname"  title="Name" maxlength="255" class="input-text required-entry" style="width:97%;">    </div>
+                    </li>
+                    <li><label for="email">E-mail</label>
+                    <div> <input type="text" id="email" name="email" value="" title="First Name" maxlength="255" class="input-text required-entry" style="width:97%;">  </div>
+                </li>
+                <li>
+                    <label for="more-info">More Information</label>
+                    <div> <textarea rows="4" cols="50" type="text" id="firstname" name="details" length="255" class="input-text required-entry" style="width:97%;"></textarea>         </div>
+                </li>
+                
+                <li>
+                    <button type="submit" title="Vote" class="button"><span><span>Submit</span></span></button>
+                </li>
+                
+            </ol>
+        </form>
+
+
+        </div><!--end first column-->
+        <!-- second column-->
+        <div class="second-content content"><h4  style="color:orange"><b>Skills Set :</b></h4>
+    <p><?php if(isset($customerData['skillset'])) {echo $customerData['skillset'];} else echo 'No data found';?></p><br>
+       <h4  style="color:orange"><b>Experience :</b></h4>
+     <p><?php if(isset($customerData['experience'])) {echo $customerData['experience'];} else echo 'No data found';?></p><br>
+<h4  style="color:orange"><b>Education :</b></h4>
+     <p><?php if(isset($customerData['education'])) {echo $customerData['education'];}else echo 'No data found';?></p></div>
+        <!--end secondcolumn-->
+        <!-- third column-->
+        <div class="third-content content"><ul class="hireprof-extra" style="color:orange">
+       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro1.png"/>Download resume</li>
+       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro2.png"/>Chat with Arawind</li>
+       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro3.png"/><a href="mailto:<?php echo $customerData['email'];?>" style="color:orange">Leave message for Arawind</a></li>
+       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro4.png"/>Schedule an interview with Arawind</li>
+       <li><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN);?>frontend/default/microzu/images/microzu/hireprof/micro5.png"/>Arawind past performance review</li>
+      </ul></div>
+        <!--end thirdcolumn-->
+    </div>
+    
+</div>
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+var formId = 'req_form';
+var myForm = new VarienForm(formId, true);
+var postUrl = '<?php echo $this->getUrl("hireme/index/save") ?>';
+function doAjax() {
+if (myForm.validator.validate()) {
+new Ajax.Updater(
+{success: 'formSuccess'}, postUrl, {
+method: 'post',
+asynchronous: true,
+evalScripts: false,
+onComplete: function (request, json) {
+Element.hide(formId);
+Element.hide('formLoader');
+Element.show('formSuccess');
+},
+onLoading: function (request, json) {
+Element.hide(formId);
+Element.show('formLoader');
+},
+parameters: $(formId).serialize(true),
+}
+);
+}
+}
+new Event.observe(formId, 'submit', function (e) {
+e.stop();
+doAjax();
+});
+//]]>
+</script>

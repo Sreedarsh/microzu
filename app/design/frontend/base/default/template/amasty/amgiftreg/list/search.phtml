@@ -1,0 +1,35 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+<?php
+
+/* @var $this Amasty_Giftregistry_Block_List */
+/* @var $helper Amasty_GiftRegistry_Helper_Search */
+$helper =  $this->helper('amgiftreg/search');
+?>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="page-head button-level">
+    <h3><?php echo $this->getTitle() ?></h3>
+</div>
+
+<form id="search_event_form" action="<?php echo $this->getUrl('*/*/list');?>" method="get">
+    <div class="input-box">
+        <label for="event_title"><?php echo $this->__('Title:') ?></label>
+        <input
+            id="event_title"
+            type="search"
+            name="event_title"
+            value="<?php echo $helper->getEscapedQueryText() ?>"
+            maxlength="<?php echo $helper->getMaxQueryLength();?>"
+            class="input-text required-entry"
+            placeholder="<?php echo $this->__('Event title...') ?>" /><br><br>
+        <button type="submit" title="<?php echo $this->__('Search') ?>" class="button search-button"><span><span><?php echo $this->__('Search') ?></span></span></button>
+    </div>
+</form>
+<br>

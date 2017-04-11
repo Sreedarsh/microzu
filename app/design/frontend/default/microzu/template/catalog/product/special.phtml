@@ -1,0 +1,53 @@
+<?php
+Mage::getSingleton('core/session', array('name' => 'frontend'));
+$_productCollection = Mage::getResourceModel('catalogsearch/advanced_collection')
+->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
+->addMinimalPrice()
+->addStoreFilter();
+
+Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($_productCollection);
+Mage::getSingleton('catalog/product_visibility')->addVisibleInSearchFilterToCollection($_productCollection);
+
+$todayDate = date('m/d/y');
+$tomorrow = mktime(0, 0, 0, date('m'), date('d'), date('y'));
+$tomorrowDate = date('m/d/y', $tomorrow);
+
+$_productCollection->addAttributeToFilter('special_from_date', array('date' => true, 'to' => $todayDate))
+->addAttributeToFilter('special_to_date', array('or'=> array(
+0 => array('date' => true, 'from' => $tomorrowDate),
+1 => array('is' => new Zend_Db_Expr('null')))
+), 'left');
+?>
+<div class="specials_block">
+<div class="page-title"><h2><?php echo $this->__('Specials') ?></h2></div>
+<?php  $_collectionSize = $_productCollection->count();  ?>
+
+<ul class="products-grid-new row">
+
+<?php  $i=0; foreach($_productCollection as $_product): ?>
+<?php $i++; if($i!=5){?>
+<li class="item span3<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+<h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><span></span><?php echo $this->htmlEscape($_product->getName()) ?></a></h3>
+<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image non-mobile-img"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(270, 217) ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" /></a>
+<div class="block_holder">
+
+<span class="price">
+<?php echo $this->getPriceHtml($_product, true, '-new') ?></span>
+
+<div class="descr"><?php echo $_product->getShortDescription() ?></div>
+<div class="actions">
+<a href="<?php echo $this->helper('checkout/cart')->getAddUrl($_product) ?> " class="icon-shopping-cart"></a>
+<a href="<?php echo $_product->getProductUrl() ?>" class="icon-info-sign"></a>
+<?php if ($this->helper('wishlist')->isAllow()) : ?>
+<a href="<?php  echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="icon-star-empty"></a>
+<?php endif; ?>
+<?php $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product) ?>
+<a href="<?php echo $_compareUrl ?>" class="icon-retweet"></a>
+
+</div>
+</div>
+</li>
+<?php } else {break;}?>
+<?php endforeach ?>
+</ul>
+</div>

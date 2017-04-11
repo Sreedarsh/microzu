@@ -1,0 +1,16 @@
+<!--/**
+ * Hire A Technician
+ *
+ * @category      Sreedarsh
+ * @package       Sreedarsh_Hat
+ * @author Sreedarsh <sreedarsh88@gmail.com>
+ */-->
+<config>
+  <modules>
+    <Sreedarsh_Hat>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>0.0.1</version>
+    </Sreedarsh_Hat>
+  </modules>
+</config>

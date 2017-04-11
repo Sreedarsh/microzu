@@ -1,0 +1,62 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+<?php /* @var $this Amasty_Giftregistry_Block_OrderedItems*/ ?>
+<p>&nbsp;</p>
+<?php $items = $this->getEvent()->getOrderedItems(); ?>
+<?php $_hlp = Mage::helper('amgiftreg'); ?>
+<?php if (count($items)): ?>
+        <table cellspacing="0" width="100%" class="data-table box-table" id="amgiftreg-table">
+            <col width="30%" />
+            <col width="40%" />
+            <col width="10%"/>
+            <col width="20%"/>
+            <thead>
+            <tr>
+                <th><?php echo $this->__('Received From') ?></th>
+                <th><?php echo $this->__('Gift') ?></th>
+                <th><?php echo $this->__('Qty') ?></th>
+                <th><?php echo $this->__('Ordered') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $total    = 0;
+            ?>
+            <?php foreach ($items as $item): $id = $item->getId();?>
+                <tr>
+                    <td>
+                        <?php echo $item->getCustomer()->getName() ?>
+                    </td>
+                    <td>
+                        <?php echo $this->htmlEscape($item->getProduct()->getName()) ?>
+                    </td>
+
+
+
+                    <td>
+                        <?php echo sprintf("%d",$item->getRealQty()) ?>
+                    </td>
+
+                    <td>
+                        <?php echo date("m/d/Y", strtotime($item->getCreatedAt())) ?>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+            </tbody>
+        </table>
+        <div class="buttons-set">
+            <p class="back-link"><a href="<?php echo $this->getUrl('*/*/index') ?>" class="left">&laquo; <?php echo $this->__('All My Events') ?></a></p>
+            </div>
+<?php else: ?>
+    <?php if ($this->getEvent()->getId()): ?>
+        <p><?php echo $this->__('Start adding items from the <a href="%s">gift registry</a> to your favorites right now!', Mage::getBaseUrl())?></p>
+    <?php endif; ?>
+    <div class="button-set">
+        <a href="<?php echo $this->getUrl('*/*/index') ?>" class="left">&laquo; <?php echo $this->__('All My Events') ?></a>
+    </div>
+<?php endif ?>

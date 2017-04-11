@@ -1,0 +1,28 @@
+<!--/**
+ * Hire A Technician
+ *
+ * @category      Sreedarsh
+ * @package       Sreedarsh_Hat
+ * @author Sreedarsh <sreedarsh88@gmail.com>
+ */-->
+
+<layout>
+    <default>
+
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/microzu.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/frontend.css</stylesheet></action>
+                <action method="addItem"><type>skin_js</type><name>js/microzu.js</name></action>
+                <action method="addJs"><stylesheet>css/bootstrap.js</stylesheet></action>
+	</reference>
+<block type="catalog/layer_view" name="catalog.leftnav" template="catalog/layer/view.phtml">  
+    <action method="unsetChild"><alias>professionals</alias></action>
+</block>
+
+ <reference name="header">
+            <block type="directory/currency" name="custom_currency_selector" template="currency/currency.phtml"/>
+        </reference>
+    </default>
+    
+    
+</layout>

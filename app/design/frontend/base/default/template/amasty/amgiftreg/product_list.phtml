@@ -1,0 +1,73 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+<script>
+	<?php
+			$listEvents = $this->helper('amgiftreg')->getListEvents();
+			$_listUrl = Mage::helper('amgiftreg')->getAddUrlById("{productId}", "{eventId}");
+		?>
+	var isMultiRegistry = <?php if(count($listEvents) > 1):?>true<?php else:?>false<?php endif;?>;
+	var selectAddToRegistry = '<?php if(count($listEvents) > 1):?> ' +
+		'<select id="eventSelect_{productId}" class="gift-event-list-select" name="event" style="display: none" onchange="am_add_to_list(this, \'{productId}\')">'+
+		'<option value=""><?php echo $this->__('Select ...') ?></option>' +
+		<?php foreach ($listEvents as $l): ?>
+		'<option value="<?php echo $l->getId()?>"><?php echo $this->htmlEscape($l->getEventTitle())?></option>' +
+		<?php endforeach ?>
+		'</select>' +
+		'<?php endif; ?>';
+
+	var isInjected = false;
+	var templateProductUrl = "<?php echo $_listUrl;?>";
+	if(isMultiRegistry) {
+		$$('.add-to-links').each(function(elem, key){
+			//elem.style.margin = "-20px";
+			elem.className = "amgiftreg-margin " + elem.className;
+		});
+	}
+
+
+	$$('.link-compare').each(function(elem, key){
+		//console.log(elem.innerHTML);
+		isInjected = true;
+		var regExp = /\/product\/(\d+)\//;
+		var founds = null;
+		if((founds = regExp.exec(elem.href)) != null) {
+			var productId = founds[1];
+			var ulAddToLinks = elem.up(3).down('.add-to-links');
+			if(ulAddToLinks) {
+				var giftRegistryUl = document.createElement("li");
+				giftRegistryUl.innerHTML = '<a href="' + templateProductUrl.replace('{productId}', productId) + '" onclick="return am_add_to_list(this, \''+ productId +'\')">Add to Registry</a>';
+				//giftRegistryUl.innerHTML += selectAddToRegistry.replace(/{productId}/g, productId);
+				ulAddToLinks.appendChild(giftRegistryUl);
+				if(selectAddToRegistry != '') {
+					var giftRegistryUl = document.createElement("li");
+					giftRegistryUl.innerHTML = '&nbsp;';
+					giftRegistryUl.innerHTML += selectAddToRegistry.replace(/{productId}/g, productId);
+					ulAddToLinks.appendChild(giftRegistryUl);
+				}
+
+
+			}
+		}
+	});
+
+	function am_add_to_list(elm, productId){
+		var selectEvent = $('eventSelect_'+productId);
+		if(selectEvent && selectEvent.value == '') {
+			selectEvent.show();
+			return false;
+		}
+		var eventId = '';
+		if(selectEvent){
+			eventId = selectEvent.value;
+		}
+		document.location.href = templateProductUrl.replace('{productId}', productId).replace('{eventId}', eventId);
+
+		return false;
+	}
+
+</script>

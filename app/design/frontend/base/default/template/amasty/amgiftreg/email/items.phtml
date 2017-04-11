@@ -1,0 +1,40 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+<?php
+
+/* @var $this Amasty_Giftregistry_Block_Share_Email_Items */
+?>
+<?php $l = count($this->getEvent()->getItems()) ?>
+<div style="border:1px solid #E0E0E0; padding:15px; background:#F9F9F9;">
+<table cellspacing="0" cellpadding="0" border="0" width="650">
+    <tr>
+    <?php $i = 0; foreach ($this->getEvent()->getItems() as $item): $i++ ?>
+        <?php /* @var $item Amasty_Giftregistry_Model_Item */ ?>
+        <?php /* @var $_product Mage_Catalog_Model_Product */ ?>
+        <?php $_product = $item->getProduct(); ?>
+        <td width="32%">
+            <p align="center" style="font-size:12px;"><a href="<?php echo $this->getProductUrl($_product) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" style="border:1px solid #ccc;" width="135" height="135" alt="" /></a></p>
+            <p align="center" style="font-size:12px;"><a href="<?php echo $this->getProductUrl($_product) ?>" style="color:#203548;"><strong><?php echo $this->escapeHtml($_product->getName()) ?></strong></a></p>
+            <?php if($item->getComments() != ''): ?><p align="center" style="font-size:12px;"><?php echo $this->__('Comment') ?>:<br /><?php echo $this->escapeHtml($item->getComments()) ?></p><?php endif; ?>
+            <p align="center" style="font-size:12px;"><a href="<?php echo $this->getProductUrl($_product) ?>" style="color:#1E7EC8;"><?php echo $this->__('View Product') ?></a> <small>
+            <?php if ($_product->getIsSalable()): ?>|</small> <a href="<?php echo $this->getSharedItemAddToCartUrl($item) ?>" style="color:#1E7EC8;"><strong><?php echo $this->__('Add to Cart') ?></strong></a><?php endif;?>
+            </p></td>
+        <?php if ($i%3!=0): ?>
+            <td width="2%"></td>
+        <?php else: ?>
+           </tr>
+            <tr>
+                <td colspan="5">&nbsp;</td>
+            </tr>
+            <?php if ($i<$l): ?>
+               <tr>
+            <?php endif ?>
+        <?php endif ?>
+    <?php endforeach ?>
+</table>
+</div>

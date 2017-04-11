@@ -1,0 +1,203 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+<?php /* @var $this Amasty_Giftregistry_Block_Edit */?>
+<?php $_event = $this->getEvent(); ?>
+<?php if ($this->getTitle()): ?>
+<div class="page-head button-level">
+    <h3><?php echo $this->getTitle() ?></h3>
+</div>
+<?php endif; ?>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php
+$form2 = new Varien_Data_Form(array(
+    'id'=> 'form-validate',
+    'action' => $this->getUrl('*/*/save', array('id'=>$_event->getId())),
+    'method' => 'post',
+    'enctype'=> 'multipart/form-data',
+));
+$form2->setUseContainer(true);
+
+$form = new Amasty_Giftregistry_Block_Form_Element_Fieldset(array(
+    //'legend' => $this->__('Create Registry'),
+    'class' =>  'fieldset',
+));
+$renderer = new Amasty_Giftregistry_Block_Renderer_Field();
+//$form->setElementRenderer($renderer);
+Varien_Data_Form::setFieldsetElementRenderer($renderer);
+
+
+$form->addType('multifile', 'Amasty_Giftregistry_Block_Form_Element_MultiFile');
+$form->addType('time', 'Amasty_Giftregistry_Block_Form_Element_Time');
+$form->addType('date', 'Amasty_Giftregistry_Block_Form_Element_Date');
+
+$form->addField('event_title', 'text',
+    array(
+        'label' => $this->__('Event title'),
+        'required'=>true,
+        'value' => $_event->getEventTitle(),
+        'name' => 'event_title',
+    )
+);
+
+$form->addField('event_hosts', 'textarea',
+    array(
+        'label' => $this->__('Event hosts'),
+        'value' => $_event->getEventHosts(),
+        'name' => 'event_hosts',
+    )
+);
+
+$form->addField('event_date', 'date',
+    array(
+        'label' => $this->__('Date of event'),
+        'required'=>true,
+        'value' => $_event->getEventDate(),
+        'format' => 'yyyy-MM-dd',
+        //'image' => '/js/calendar/img.gif',
+        'image' => $this->getSkinUrl('images/calendar.gif'),
+        'name' => 'event_date',
+        'class' => 'validate-date',
+        /*'calendarSetupParams' => array(
+            'min' => date('Y-m-d'),
+            'showsTime' => false,
+        ),*/
+    )
+);
+
+$form->addField('event_time', 'time',
+    array(
+        'label' => $this->__('Time of event'),
+        'emptyValues' => true,
+        'value' => $_event->getEventTime(),
+        'name' => 'event_time',
+        'class' => 'amgiftreg-select-time',
+        'template'  => '{hour}&nbsp;:&nbsp;{minute}',
+        'htmlAttributes' => array(
+            'class' => 'amgiftreg-select-time'
+        ),
+    )
+);
+
+$form->addField('event_location', 'textarea',
+    array(
+        'label' => $this->__('Event location'),
+        'value' => $_event->getEventLocation(),
+        'name' => 'event_location',
+    )
+);
+
+$form->addField('additional_information', 'textarea',
+    array(
+        'label' => $this->__('Additional Information'),
+        'value' => $_event->getAdditionalInformation(),
+        'name' => 'additional_information',
+    )
+);
+
+$image = $_event->getImage();
+if($image) {
+    $image = "<img src='{$image}' width='100' height='100'>";
+}
+
+$form->addField('image', 'file',
+    array(
+        'label' => $this->__('Event image'),
+        //'value' => $_event->getAdditionalInformation(),
+        'name' => 'image',
+        'after_element_html' => $image
+    )
+);
+if($_event->getImage()) {
+    $form->addField('delete_image', 'checkbox',
+        array(
+            'label' => $this->__('Delete image'),
+            'value' => '1',
+            'name' => 'delete_image',
+        )
+    );
+}
+
+
+$form->addField('searchable', 'select',
+    array(
+        'label' => $this->__('Show registry at the search page'),
+        'value' => is_null($_event->getSearchable()) ? 1 : $_event->getSearchable(),
+        'name' => 'searchable',
+        'values' => array(
+            '1' => $this->__("Yes"),
+            '0' => $this->__("No"),
+        ),
+    )
+);
+
+$form->addField('shipping_address_id', 'select',
+    array(
+        'label' => $this->__('Ship gifts to the following address'),
+        'value' => $_event->getShippingAddressId() ? $_event->getShippingAddressId() : $this->getDefaultShippingAddressId(),
+        'name' => 'shipping_address_id',
+        'values' => $this->getShippingAddresses(),
+    )
+);
+
+$form->addField('shipping_address_text', 'note',
+    array(
+        'text' =>
+            $this->__('If you would like the gifts to be shipped to a different address, please add it to your %sAddress Book%s.',
+                '<a href="'.$this->getUrl('customer/address').'" target="_blank">',
+                '</a>'),
+    )
+);
+
+
+$form->addField('password', 'text',
+    array(
+        'label' => $this->__('Password'),
+        'required'=>false,
+        'value' => $_event->getPassword(),
+        'name' => 'password',
+    )
+);
+
+/**
+ * TODO: planned functionallity
+$form->addField('file', 'multifile',
+    array(
+        'label' => $this->__('Event file'),
+        //'value' => $_event->getAdditionalInformation(),
+        'name' => 'file',
+    )
+);
+*/
+$form->addField('submit', 'submit',
+    array(
+        'label' => ' ',
+        'value' => !$_event->getId() ? $this->__('Create Registry') : $this->__('Save'),
+        'class' => 'button',
+    )
+);
+
+$form2->addElement($form);
+
+echo $form2->toHtml();
+
+//Varien_Data_Form::setFieldsetElementRenderer(null);
+
+?>
+<script type="text/javascript">
+//<![CDATA[
+var dataForm = new VarienForm('form-validate', true);
+//]]>
+</script>
+<br>
+<div class="button-set">
+    <?php if($_event->getId()):?>
+    <p class="back-link"><a href="<?php echo $this->getUrl('*/*/view', array('id'=>$_event->getId())) ?>" class="left">&laquo; <?php echo $this->__('View') ?></a></p>
+    <?php endif; ?>
+    <p class="back-link"><a href="<?php echo $this->getUrl('*/*/index') ?>" class="left">&laquo; <?php echo $this->__('All My Events') ?></a></p>
+</div>

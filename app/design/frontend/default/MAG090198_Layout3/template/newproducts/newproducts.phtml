@@ -1,0 +1,86 @@
+<?php $is_homepage = Mage::getBlockSingleton('page/html_header')->getIsHomePage();
+		if($is_homepage) 
+		{ 
+		}
+		else {
+		?>
+		
+<?php if (($_products = $this->getNewProductCollection()) && $_products->getSize()): ?>
+<div class="block block-related">
+    <div class="block-title">
+        <strong><span><?php echo $this->getSidebarHeading(); ?></span></strong>
+    </div>
+    <div class="block-content">      
+        <ol class="mini-products-list" id="block-newproducts">
+        <?php foreach ($_products as $_item): ?>
+            <li class="item">                
+                <div class="product" style="margin-left: 0px;">
+                    <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50) ?>" width="50" height="50" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" /></a>
+					
+                    <div class="product-details">
+                    <p class="product-name"><a href="<?php echo $_item->getProductUrl() ?>">
+					<?php $str = strlen($this->escapeHtml($_item->getName()));
+					
+					if($str <= 20 ){ 
+					echo $this->escapeHtml($_item->getName()); ?>
+					<?php }else{
+					echo substr($this->escapeHtml($_item->getName()),0,20) ."..";
+				
+				}?>
+					</a></p>
+					 
+					<div class="price-box">
+					<?php 
+					$_coreHelper = Mage::helper('core');
+					$baseCurrencyCode = Mage::app()->getStore()->getBaseCurrencyCode();
+					$currentCurrencyCode = Mage::app()->getStore()->getCurrentCurrencyCode();
+					$currencySymbol = Mage::app()->getLocale()->currency($currentCurrencyCode)->getSymbol();
+					
+					
+					$special = Mage::getModel('catalog/product')->load($_item->getId())->getSpecialPrice();
+					
+					
+					
+					if($special != 0){
+					?>
+					<span  class="price old-price"><?php echo Mage::helper('core')->currency($_item->getPrice(),true,false); ?> </span>
+					<span  class="price special-price"> <?php  
+					/* $special = Mage::helper('core')->currency($special);*/
+					$special = sprintf ("%.2f", $special);
+					echo $_coreHelper->currency($special); ?> 
+					
+					</span>
+						  <?php  
+					
+					}else{
+					?>
+					<span class="regular-price">
+								 <span class="price">
+					<?php  echo Mage::helper('core')->currency($_item->getPrice(),true,false);  ?>
+					</span>
+					</span>
+					<?php	  
+					}
+					
+					?> 
+					</div>
+				  
+						<?php if($_item->isSaleable()): ?>
+						<p><a href="<?php echo $_item->getProductUrl() ?>"  rel="nofollow" class="addto-cart"><?php echo $this->__('Add to Cart') ?></a></p>
+						<?php endif; ?>
+					 
+                    </div>
+					
+                </div>
+            </li>
+        <?php endforeach ?>
+        </ol>
+		
+        <script type="text/javascript">decorateList('block-newproducts', 'none-recursive')</script>
+    </div>    
+</div>
+<?php endif ?>
+
+<?php } ?>
+
+ 

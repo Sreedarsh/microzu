@@ -1,0 +1,119 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+<?php /** @var $this Amasty_Giftregistry_Block_Items */?>
+<p>&nbsp;</p>
+<?php $items = $this->getEvent()->getItems();?>
+<?php $_hlp = Mage::helper('amgiftreg'); ?>
+<?php if (count($items)): ?>
+    <form action="<?php echo $this->getUrl('*/*/cart') ?>" method="post">
+        <input type="hidden" name="event_id" value="<?php echo $this->getEvent()->getId() ?>">
+        <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+        <table cellspacing="0" width="100%" class="data-table box-table" id="amgiftreg-table">
+            <col width="30" />
+            <col width="130" />
+            <col />
+            <col width="130"/>
+            <col width="30"/>
+            <col width="120"/>
+            <col />
+            <col />
+            <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th><?php echo $this->__('Product') ?></th>
+                <th><?php echo $this->__('Price') ?></th>
+                <th><?php echo $this->__('Priority') ?></th>
+                <th><?php echo $this->__('Comments') ?></th>
+                <th><?php echo $this->__('Desired') ?></th>
+                <th><?php echo $this->__('Received') ?></th>
+                <th><?php echo $this->__('Actions') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $allEvents = $this->getAllEvents($this->getEvent()->getId());
+            $total    = 0;
+            ?>
+            <?php foreach ($items as $item): $id = $item->getId();?>
+                <tr>
+                    <td>
+                        <input type="checkbox" class="select_items" id="select_item_<?php echo $id ?>" name="cb[]" value="<?php echo $id ?>" <?php if($item->getQty() > $item->getCountReceived()):?>checked<?php endif;?> />
+                    </td>
+                    <td>
+                        <div>
+                            <a href="<?php echo $item->getProduct()->getProductUrl() ?>">
+                                <img src="<?php echo $this->helper('catalog/image')->init($item->getProduct(), 'small_image')->resize(113, 113); ?>" alt="<?php echo $this->htmlEscape($item->getProduct()->getName()) ?>" width="113" />
+                            </a>
+                        </div>
+                        <div><a href="<?php echo $item->getProduct()->getProductUrl() ?>" title="<?php echo $this->htmlEscape($item->getProduct()->getName()) ?>"><?php echo $this->htmlEscape($item->getProduct()->getName()) ?></a></div>
+                        <?php echo $item->getOptionsHtml() ?>
+                        <?php if(!$item->getProduct()->isSaleable()){ ?> Not Saleable <?php } ?>
+                    </td>
+
+                    <td>
+                        <?php $price = $item->getPrice(); $total += ($price * $item->getQty()); ?>
+						<?php echo $this->getPriceHtml($item->getProduct());?>
+                    </td>
+
+                    <td>
+                        <?php echo $_hlp->getPriorityById($item->getPriority());?>
+                    </td>
+
+                    <td>
+                        <?php echo $this->escapeHtml($item->getComments());?>
+                    </td>
+
+                    <td>
+                        <input type="text" size="2" name="qty[<?php echo $id ?>]" value="<?php echo $item->getQty() ?>" style="width: 100%"/>
+                    </td>
+
+                    <td>
+                        <span class="received-count"><?php echo $item->getCountReceived() ? sprintf("%d",$item->getCountReceived()) : 0;?></span>
+                    </td>
+
+                    <td>
+                        <a href="javascript:void(0)" onclick="return addToCartItem('<?php echo $id ?>');">
+                            <?php echo $this->__('Add to Cart') ?>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+            <?php if ($total && false): ?>
+                <tr>
+                    <td colspan="6" style="text-align:right"><strong><?php echo $this->__('Total:')?></strong></td>
+                    <td colspan="2" style="text-align:left"><strong><?php echo Mage::helper('core')->currency($total, true, false); ?></strong></td>
+                </tr>
+            <?php endif ?>
+            </tbody>
+        </table>
+        <div class="buttons-set">
+            <p class="back-link"><a href="<?php echo $this->getUrl('*/*/list') ?>" class="left">&laquo; <?php echo $this->__('All Events') ?></a></p>
+            <button type="submit" id="btnAddToCart" class="button" type="button"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+        </div>
+    </form>
+    <script type="text/javascript">
+        decorateTable('amgiftreg-table');
+
+        function addToCartItem(productId) {
+            $$('.select_items').each(function(element){
+                element.writeAttribute('checked', false);
+            });
+
+            $('select_item_' + productId).writeAttribute('checked', 'checked');
+            $('btnAddToCart').click();
+            return false;
+        }
+    </script>
+<?php else: ?>
+    <?php if ($this->getEvent()->getId()): ?>
+        <p><?php echo $this->__('Currently there are no items in the registry.', Mage::getBaseUrl())?></p>
+    <?php endif; ?>
+    <div class="button-set">
+        <p class="back-link"><a href="<?php echo $this->getUrl('*/*/list') ?>" class="left">&laquo; <?php echo $this->__('All Events') ?></a></p>
+    </div>
+<?php endif ?>

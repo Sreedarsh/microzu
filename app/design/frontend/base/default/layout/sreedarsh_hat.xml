@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<!--/**
+ * Hire A Technician
+ *
+ * @category      Sreedarsh
+ * @package       Sreedarsh_Hat
+ * @author Sreedarsh <sreedarsh88@gmail.com>
+ */-->
+ 
+ <layout version="0.1.0">
+     <sreedarsh_hat_index_index>   
+        <reference name="root">   
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>   
+        </reference>   
+        <reference name="content">   
+            <block type="sreedarsh_hat/hireme" name="sreedarsh_hireme" template="sreedarsh/hat/technician.phtml"/>   
+        </reference>   
+    </sreedarsh_hat_index_index>  
+    
+     
+      <sreedarsh_hat_technician_index>   
+        <reference name="root">   
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>   
+        </reference>   
+        <reference name="content">   
+            <block type="sreedarsh_hat/hireme" name="sreedarsh_hireme" template="sreedarsh/hat/detail.phtml"/>   
+        </reference>
+           
+    </sreedarsh_hat_technician_index> 
+    
+    <sreedarsh_hat_index_special>   
+        <reference name="root">   
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>   
+        </reference>   
+        <reference name="content">   
+            <block type="catalog/product_special" name="sreedarsh_special" template="special/product/listing.phtml"/>   
+        </reference>
+           
+    </sreedarsh_hat_index_special> 
+    
+    <sreedarsh_hat_technician_category>   
+        <reference name="root">   
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>   
+        </reference>   
+        <reference name="content">   
+            <block type="sreedarsh_hat/hireme" name="sreedarsh_hireme" template="sreedarsh/hat/list.phtml"/>   
+        </reference>
+           
+    </sreedarsh_hat_technician_category>
+    
+     
+      <sreedarsh_hat_technician_skill>   
+        <reference name="root">   
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>   
+        </reference>   
+        <reference name="content">   
+            <block type="sreedarsh_hat/hireme" name="sreedarsh_hireme" template="sreedarsh/hat/skill_list.phtml"/>   
+        </reference>
+           
+    </sreedarsh_hat_technician_skill> 
+       
+    <sreedarsh_hat_technician_fulllist>   
+        <reference name="root">   
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>   
+        </reference>   
+        <reference name="content">   
+            <block type="sreedarsh_hat/hireme" name="sreedarsh_hireme" template="sreedarsh/hat/fulllist.phtml"/>   
+        </reference>
+           
+    </sreedarsh_hat_technician_fulllist>
+          
+     </layout>  

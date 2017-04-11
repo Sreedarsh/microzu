@@ -1,0 +1,74 @@
+
+    
+    
+    
+        
+
+
+
+<?php
+/**
+ * Hire A Technician
+ *
+ * @category      Sreedarsh
+ * @package       Sreedarsh_Hat
+ * @author Sreedarsh <sreedarsh88@gmail.com>
+ */
+?>   
+    <br> 
+    <div class="silver-tech">
+     <ul class="product-carousel" id="featured-carosusel">        
+			<?php foreach ($this->getTech() as $member): ?>    
+                <?php if (($this->getDetails($member->getCustomerId())[2]) && (($this->getPackage($member->getMemberId()) == 2))): ?>
+            <li class="item slider-item" style="width:240px;">   
+				  	<div class="product-block">
+						<div class="product-block-inner">
+				           <div class="product-image-block">
+                                               <div style="min-height:250px;">
+						 <?php if(!$this->getDetails($member->getCustomerId())[1]):?>
+                                                   <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$member->getCustomerId()));?>"> <img alt="avatar" src="http://www.jainvivah.in/themes/site/images/d.png"> </a>
+                                             <?php else :?>
+                                               	<a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$member->getCustomerId()));?>" title="<?php echo $member->getMemberName(); ?>" class="product-image"><img  src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($this->getDetails($member->getCustomerId())[1], '/'); ?>" width="330" height="330" alt="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($this->getDetails($member->getCustomerId())[1], '/'); ?>" /></a>
+						<?php endif;?>
+						 </div>
+                                                <div class="member-name" style="text-align: center;"> <h4><?php echo $member->getMemberName(); ?> </h4> </div>
+                                                
+						</div>  
+							
+					 </div>		
+					</div>
+					
+               </li>  
+               <?php endif;?>
+               
+    <?php endforeach; ?>
+        </ul> 
+</div>
+
+ 
+
+
+
+
+
+
+
+
+        
+    
+   
+    <style>
+    .slider-item{
+        width:240px !important;
+    }
+    
+    .product-carousel .product-block{
+        border-right: 1px solid #e4e4e4 !important;
+    }
+    </style>
+
+
+
+
+
+

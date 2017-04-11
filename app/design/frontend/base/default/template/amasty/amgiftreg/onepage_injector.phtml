@@ -1,0 +1,40 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+<?php /* @var $this Amasty_Giftregistry_Block_Onepage_Injector */ ?>
+
+
+<?php if($this->isNeedInjection()): ?>
+
+	<?php //var_dump(json_encode($this->getShippingAddressData()))?>
+<script>
+	//$$('document').ready(function() {
+		var data = <?php echo json_encode($this->getShippingAddressData())?>;
+		//$j('#billing:use_for_shipping_no').click();
+		var radioShip = document.getElementById("billing:use_for_shipping_no");
+		if(radioShip) {
+			radioShip.click();
+		}
+
+		var shipSelect = document.getElementById("shipping-address-select");
+		if(shipSelect) {
+			shipSelect.value = "";
+			shipSelect.onchange();
+		}
+		var element = null;
+		for(field in data) {
+			element = document.getElementById("shipping:"+field);
+			if(element) {
+				element.value = data[field];
+			}
+		}
+
+	//});
+</script>
+
+
+<?php endif; ?>

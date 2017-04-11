@@ -1,0 +1,66 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+
+<ul class="add-to-links">
+    <?php if ($this->helper('wishlist')->isAllow()) : ?>
+        <li><a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+    <?php endif; ?>
+    <?php
+    $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product);
+    ?>
+    <?php if($_compareUrl) : ?>
+        <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+    <?php endif; ?>
+
+    <?php
+        $_registryUrl = $this->helper('amgiftreg')->getAddUrl($_product);
+    ?>
+    <?php if($_registryUrl) : ?>
+        <?php
+        $listEvents = $this->helper('amgiftreg')->getListEvents();
+        ?>
+
+        <li>
+            <span class="separator">|</span> <a href="<?php echo $_registryUrl ?>" class="amgiftreg link-registry" onclick="return am_add_to_list(this.href)"><?php echo $this->helper('amgiftreg')->__('Add to Registry') ?></a>
+            <?php if(count($listEvents) > 1):?>
+                <br>
+                <select id="event" name="event" style="display: none;margin: 5px;" onchange="am_add_to_list('<?php echo $_registryUrl?>')">
+                    <option value=""><?php echo $this->__('Select ...') ?></option>
+                    <?php foreach ($listEvents as $l): ?>
+                        <option value="<?php echo $l->getId()?>"><?php echo $this->htmlEscape($l->getEventTitle())?></option>
+                    <?php endforeach ?>
+                </select>
+            <?php endif; ?>
+        </li>
+    <?php endif; ?>
+</ul>
+
+<?php if($_registryUrl) : ?>
+<script>
+    function am_add_to_list(lnk){
+        var f = $('product_addtocart_form');
+        var selectEvent = $('event');
+
+        if(selectEvent && selectEvent.value == '') {
+            selectEvent.show();
+            return false;
+        }
+        console.log(f);
+        if (f){
+            f.action = lnk;
+            productAddToCartForm.submit();
+        }
+        else
+            document.location.href = lnk;
+
+        return false;
+    }
+</script>
+<?php endif; ?>

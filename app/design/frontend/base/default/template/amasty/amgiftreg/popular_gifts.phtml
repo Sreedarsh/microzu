@@ -1,0 +1,43 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Giftregistry
+ */
+?>
+<?php
+
+/* @var $this Amasty_Giftregistry_Block_Popular */
+/* @var $_coreHelper Mage_Core_Helper_Data */
+
+$_coreHelper = $this->helper('core');
+?>
+<?php if ($_products = $this->getPopularGifts()): ?>
+<div class="block block-list block-viewed">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Popular Gifts') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <ol id="recently-viewed-items" class="mini-products-list">
+        <?php foreach ($_products as $_item): ?>
+            <li class="item">
+                <a href="<?php echo $_item->getProductUrl() ?>">
+                    <span class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50, 50)->setWatermarkSize('30x10'); ?>" width="50" height="50" alt="<?php echo $this->escapeHtml($this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name')) ?>" /></span>
+                </a>
+                <div class="product-details">
+                    <p class="product-name">
+                        <a href="<?php echo $_item->getProductUrl($_item) ?>">
+                            <?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?>
+                        </a>
+                    </p>
+                    <p>
+                        <b><?php echo $_coreHelper->formatPrice($_item->getFinalPrice(), false)//sprintf("%.2f", $_item->getFinalPrice()); ?></b>
+                    </p>
+                </div>
+            </li>
+        <?php endforeach; ?>
+        </ol>
+        <script type="text/javascript">decorateList('recently-viewed-items');</script>
+    </div>
+</div>
+<?php endif; ?>
