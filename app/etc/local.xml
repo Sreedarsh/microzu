@@ -41,9 +41,9 @@
             <default_setup>
                 <connection>
                     <host><![CDATA[localhost]]></host>
-                    <username><![CDATA[y2cloud_user3]]></username>
-                    <password><![CDATA[!Denver12]]></password>
-                    <dbname><![CDATA[y2cloud_magento3]]></dbname>
+                    <username><![CDATA[sreedarsh]]></username>
+                    <password><![CDATA[sreedarsh]]></password>
+                    <dbname><![CDATA[new_microzu]]></dbname>
                     <initStatements><![CDATA[SET NAMES utf8]]></initStatements>
                     <model><![CDATA[mysql4]]></model>
                     <type><![CDATA[pdo_mysql]]></type>
