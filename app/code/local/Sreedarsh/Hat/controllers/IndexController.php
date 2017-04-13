@@ -34,6 +34,8 @@ class Sreedarsh_Hat_IndexController extends Mage_Core_Controller_Front_Action {
         if($technician->getId()){
             $update_data = array('child_id' => Mage::app()->getRequest()->getParam('catid'));
         $save = $model->load($cus_id,'customer_id')->addData($update_data); 
+        
+        /*attribute save*/
         $customer_model->setTechnicianCategory(Mage::app()->getRequest()->getParam('catid'));
         $customer_model->save();
         $save->save();
