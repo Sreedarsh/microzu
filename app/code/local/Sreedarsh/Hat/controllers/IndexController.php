@@ -21,7 +21,6 @@ class Sreedarsh_Hat_IndexController extends Mage_Core_Controller_Front_Action {
     }
     
     public function categoryAction() {
-       echo Mage::app()->getRequest()->getParam('catid');
        
        $customer = Mage::getSingleton('customer/session')->getCustomer();
        
@@ -35,22 +34,34 @@ class Sreedarsh_Hat_IndexController extends Mage_Core_Controller_Front_Action {
             $update_data = array('child_id' => Mage::app()->getRequest()->getParam('catid'));
         $save = $model->load($cus_id,'customer_id')->addData($update_data); 
         
-        /*attribute save*/ 
-        $customer_model->setTechnicianCategory(Mage::app()->getRequest()->getParam('catid'));
-        $customer_model->save();
+        /*attribute save*/
+                    $customer_model->setMemberCategory(Mage::app()->getRequest()->getParam('catid'));
+
+                    try{
+                        $customer_model->save();
+                    }
+                    catch (Exception $e) {
+                        mage::log($e->getMessage());
+                    }
         $save->save();
         }
         else{
         $data = array('child_id' => Mage::app()->getRequest()->getParam('catid'), 'customer_id' => $customer->getId());
         $save = $model->setData($data);
-        $customer_model->setTechnicianCategory(Mage::app()->getRequest()->getParam('catid'));
-        $customer_model->save();
+        /*attribute save*/
+        $customer_model->setMemberCategory(Mage::app()->getRequest()->getParam('catid'));
+
+                    try{
+                        $customer_model->save();
+                    }
+                    catch (Exception $e) {
+                        mage::log($e->getMessage());
+                    }
+                  
         $save->save();
-       
-       
-       
+    
     }
    
-    
+  echo 'Category changed succesfully';   
 }
 }
