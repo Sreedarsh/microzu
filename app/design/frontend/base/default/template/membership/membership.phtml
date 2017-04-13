@@ -21,10 +21,6 @@
                     
                     <script type="text/javascript">
     function GetSelectedTextValue(member_category) {
-//        var selectedText = member_category.options[member_category.selectedIndex].innerHTML;
-//        var selectedValue = member_category.value;
-//        alert("Selected Text: " + selectedText + " Value: " + selectedValue);
-
 
 new Ajax.Request('<?php echo Mage::getUrl('hireme/index/category');?>Getcategory?catid=' + member_category.value,
                 {
@@ -44,7 +40,7 @@ new Ajax.Request('<?php echo Mage::getUrl('hireme/index/category');?>Getcategory
 </script>
     
 	<div class="page-title form-group">
-		<h1><?php echo $this->__('Welcome To Our Membership Program') ?></h1>
+		<h1><?php echo $this->__('Welcome To Our Microzu membership Program') ?></h1>
 	</div>
 	<?php	echo($this->getWelcomeMessage());?>
 	<div class="membership-steps form-group" id="membership-signup-steps">
