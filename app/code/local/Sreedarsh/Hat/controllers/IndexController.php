@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Hire A Technician
  *
@@ -36,7 +35,6 @@ class Sreedarsh_Hat_IndexController extends Mage_Core_Controller_Front_Action {
         
         /*attribute save*/
                     $customer_model->setMemberCategory(Mage::app()->getRequest()->getParam('catid'));
-
                     try{
                         $customer_model->save();
                     }
@@ -50,7 +48,6 @@ class Sreedarsh_Hat_IndexController extends Mage_Core_Controller_Front_Action {
         $save = $model->setData($data);
         /*attribute save*/
         $customer_model->setMemberCategory(Mage::app()->getRequest()->getParam('catid'));
-
                     try{
                         $customer_model->save();
                     }
@@ -62,6 +59,6 @@ class Sreedarsh_Hat_IndexController extends Mage_Core_Controller_Front_Action {
     
     }
    
-  echo 'Category changed succesfully';   
+  echo 'Category changed successfully';   
 }
 }
