@@ -1,11 +1,12 @@
 <?php $packages = $this->getPackages()?>
 <div class="ms-membership">
-    
-    <?php $attribute = Mage::getModel('eav/config')->getAttribute('customer','member_category');  ?>
-    
+   <?php $session =  Mage::getSingleton('customer/session');
+   if($session->isLoggedIn()):
+   ?>
+    <?php $attribute = Mage::getModel('eav/config')->getAttribute('customer','member_category');  ?>    
                     <label for="member_category"  style="font-weight: bold;"><?php echo $this->__('Category') ?></label>
                     <div class="input-box"> 
-                    <?php $category_id = Mage::getSingleton('customer/session')->getCustomer()->getMemberCategory();?>
+                    <?php $category_id = $session->getCustomer()->getMemberCategory();?>
                         <select name="member_category" id="member_category" class="<?php if($flag == 1){?>required-entry<?php } ?>" onchange="GetSelectedTextValue(this)">
                             <?php
                                  $options = $attribute->getSource()->getAllOptions(); 
@@ -16,9 +17,7 @@
                             <?php } ?>
                         </select>
                         <div id="price_change"></div>
-                       </div>
-                    
-                    
+                       </div>                                       
                     <script type="text/javascript">
     function GetSelectedTextValue(member_category) {
 
@@ -38,9 +37,12 @@ new Ajax.Request('<?php echo Mage::getUrl('hireme/index/category');?>Getcategory
 
     }
 </script>
-    
+    <?php endif;?>
+
+
+
 	<div class="page-title form-group">
-		<h1><?php echo $this->__('Welcome To Our Microzu membership Program') ?></h1>
+		<h1><?php echo $this->__('Welcome To Microzu Membership Program') ?></h1>
 	</div>
 	<?php	echo($this->getWelcomeMessage());?>
 	<div class="membership-steps form-group" id="membership-signup-steps">
