@@ -1,5 +1,6 @@
 <?php $packages = $this->getPackages()?>
 <div class="ms-membership">
+    <div id="category_selection" style="width: 33%;padding: 25px;">
    <?php $session =  Mage::getSingleton('customer/session');
    if($session->isLoggedIn()):
    ?>
@@ -37,9 +38,22 @@ new Ajax.Request('<?php echo Mage::getUrl('hireme/index/category');?>Getcategory
 
     }
 </script>
+<script>
+
+function triggerMe() {
+    var cat = document.getElementById("member_category");
+     if (cat.value == ""){
+    alert("Please select a category");  
+    document.getElementById("category_selection").style.background = "red";
+    return false;
+   
+  }
+ 
+}
+</script>
     <?php endif;?>
 
-
+    </div>
 
 	<div class="page-title form-group">
 		<h1><?php echo $this->__('Welcome To Microzu Membership Program') ?></h1>
@@ -92,7 +106,7 @@ new Ajax.Request('<?php echo Mage::getUrl('hireme/index/category');?>Getcategory
 					switch($buyButton) {
 						case 1: ?>
 							<!-- Sign Up Now -->
-							<div class="action col-sm-6 col-xs-6 col-tn-12"><a href='<?php echo Mage::getUrl('membership/index/addToCartUrl',array('productId'=>$package->getProductId()))?>'>Sign Up Now</a></div>
+							<div class="action col-sm-6 col-xs-6 col-tn-12"><a href='<?php echo Mage::getUrl('membership/index/addToCartUrl',array('productId'=>$package->getProductId()))?>' <?php if($session->isLoggedIn()):?> onclick="return triggerMe(); <?php endif;?>">Sign Up Now</a></div>
 							<!-- Signed Up -->
 							<?php break;
 						case 2: ?>
