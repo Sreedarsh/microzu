@@ -229,27 +229,27 @@ $technician = $this->retriveAllTech();
 <div class="w3-content w3-display-container">
     <div class="bxslider">
     <div>
-        <?php $tech0 = $customer->load($tech_array[0]);$avatar = $tech->getAvatarImage()?>
-        <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[0]));?>"> <img src="<?php if($avatar) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech0->getAvatarImage(), '/');}else{ echo $this->getSkinUrl('images/dummy.jpg');} ?>" /> </a>
+        <?php $tech0 = $customer->load($tech_array[0]);$avatar0 = $tech->getAvatarImage()?>
+        <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[0]));?>"> <img src="<?php if($avatar0) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech0->getAvatarImage(), '/');}else{ echo $this->getSkinUrl('images/dummy.jpg');} ?>" /> </a>
       <p><?php echo $tech0->getName();?></p>
       <p><?php echo ($this->getCatname($tech0->getMemberCategory()) != "")?$this->getCatname($tech0->getMemberCategory()):'&nbsp;';?></p>
       
       <?php $customer->unsetData();?>
-      <?php $tech1 = $customer->load($tech_array[1]); $avatar = $tech1->getAvatarImage()?>
-      <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[1]));?>"> <img src="<?php if($avatar) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech1->getAvatarImage(), '/');}else{ echo $this->getSkinUrl('images/dummy.jpg');} ?>" /> </a>
+      <?php $tech1 = $customer->load($tech_array[1]); $avatar1 = $tech1->getAvatarImage()?>
+      <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[1]));?>"> <img src="<?php if($avatar1) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech1->getAvatarImage(), '/');}else{ echo $this->getSkinUrl('images/dummy.jpg');} ?>" /> </a>
       <p><?php echo $tech1->getName();?></p>
       <p><?php echo ($this->getCatname($tech1->getMemberCategory()) != "")?$this->getCatname($tech1->getMemberCategory()):'&nbsp;';?></p>
       <?php $customer->unsetData();?>
     </div>
         
     <div>
-        <?php $tech2 = $customer->load($tech_array[2]); $avatar = $tech2->getAvatarImage()?>
-        <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[2]));?>"> <img src="<?php if($avatar) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech2->getAvatarImage(), '/'); }else{ echo $this->getSkinUrl('images/dummy.jpg');}?>" /> </a>
+        <?php $tech2 = $customer->load($tech_array[2]); $avatar2 = $tech2->getAvatarImage()?>
+        <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[2]));?>"> <img src="<?php if($avatar2) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech2->getAvatarImage(), '/'); }else{ echo $this->getSkinUrl('images/dummy.jpg');}?>" /> </a>
       <p><?php echo $tech2->getName();?></p>
       <p><?php echo ($this->getCatname($tech2->getMemberCategory()) != "")?$this->getCatname($tech2->getMemberCategory()):'&nbsp;';?></p>
       <?php $customer->unsetData();?>
-      <?php $tech3 = $customer->load($tech_array[3]); $avatar = $tech3->getAvatarImage()?>
-      <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[3]));?>"><img src="<?php if($avatar) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech3->getAvatarImage(), '/'); }else{ echo $this->getSkinUrl('images/dummy.jpg');}?>" /> </a>
+      <?php $tech3 = $customer->load($tech_array[3]); $avatar3 = $tech3->getAvatarImage()?>
+      <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[3]));?>"><img src="<?php if($avatar3) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech3->getAvatarImage(), '/'); }else{ echo $this->getSkinUrl('images/dummy.jpg');}?>" /> </a>
       <p><?php echo $tech3->getName();?></p>
       <p><?php echo ($this->getCatname($tech3->getMemberCategory()) != "")?$this->getCatname($tech3->getMemberCategory()):'&nbsp;';?></p>
       <?php $customer->unsetData();?>
@@ -258,27 +258,27 @@ $technician = $this->retriveAllTech();
      <?php if($technician->count() > 4):?>
    
     <div>
-        <?php $tech4 = $customer->load($tech_array[4]); $avatar = $tech4->getAvatarImage()?>
-        <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[4]));?>"> <img src="<?php if($avatar) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech4->getAvatarImage(), '/');}else{ echo $this->getSkinUrl('images/dummy.jpg');} ?>" /> </a>
+        <?php $tech4 = $customer->load($tech_array[4]); $avatar4 = $tech4->getAvatarImage()?>
+        <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[4]));?>"> <img src="<?php if($avatar4) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech4->getAvatarImage(), '/');}else{ echo $this->getSkinUrl('images/dummy.jpg');} ?>" /> </a>
       <p><?php echo $tech4->getName();?></p>
       <p><?php echo ($this->getCatname($tech4->getMemberCategory()) !="")?$this->getCatname($tech4->getMemberCategory()):'&nbsp;';?></p>
       <?php $customer->unsetData(); ?>
-      <?php $tech5 = $customer->load($tech_array[5]); $avatar = $tech5->getAvatarImage()?>
-      <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[5]));?>"> <img src="<?php if($avatar) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech5->getAvatarImage(), '/'); }else{ echo $this->getSkinUrl('images/dummy.jpg');}?>" /> </a>
+      <?php $tech5 = $customer->load($tech_array[5]); $avatar5 = $tech5->getAvatarImage()?>
+      <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[5]));?>"> <img src="<?php if($avatar5) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech5->getAvatarImage(), '/'); }else{ echo $this->getSkinUrl('images/dummy.jpg');}?>" /> </a>
       <p><?php echo $tech5->getName();?></p>
       <p><?php echo ($this->getCatname($tech5->getMemberCategory()) != "")?$this->getCatname($tech5->getMemberCategory()):'&nbsp;';?></p>    
       <?php $customer->unsetData();?>
     </div>
         
     <div>
-        <?php $tech6 = $customer->load($tech_array[6]); $avatar = $tech6->getAvatarImage()?>
-        <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[6]));?>">  <img src="<?php if($avatar) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech6->getAvatarImage(), '/');}else{ echo $this->getSkinUrl('images/dummy.jpg');} ?>" /> </a>
+        <?php $tech6 = $customer->load($tech_array[6]); $avatar6 = $tech6->getAvatarImage()?>
+        <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[6]));?>">  <img src="<?php if($avatar6) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech6->getAvatarImage(), '/');}else{ echo $this->getSkinUrl('images/dummy.jpg');} ?>" /> </a>
       <p><?php echo $tech6->getName();?></p>
       <p><?php echo ($this->getCatname($tech6->getMemberCategory()) != "")?$this->getCatname($tech6->getMemberCategory()):'&nbsp;';?></p>
       <?php $customer->unsetData();?>
       
-      <?php $tech7 = $customer->load($tech_array[7]); $avatar = $tech7->getAvatarImage()?>
-      <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[7]));?>"> <img src="<?php if($avatar) {echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech7->getAvatarImage(), '/');}else{ echo $this->getSkinUrl('images/dummy.jpg');} ?>" /> </a>
+      <?php $tech7 = $customer->load($tech_array[7]); $avatar7 = $tech7->getAvatarImage()?>
+      <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[7]));?>"> <img src="<?php if($avatar7) {echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech7->getAvatarImage(), '/');}else{ echo $this->getSkinUrl('images/dummy.jpg');} ?>" /> </a>
       <p><?php echo $tech7->getName();?></p>
       <p><?php echo ($this->getCatname($tech7->getMemberCategory()) != "")?$this->getCatname($tech7->getMemberCategory()):'&nbsp;';?></p>
       <?php $customer->unsetData();?>
