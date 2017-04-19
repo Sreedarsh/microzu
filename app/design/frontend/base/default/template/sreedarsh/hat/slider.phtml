@@ -229,7 +229,7 @@ $technician = $this->retriveAllTech();
 <div class="w3-content w3-display-container">
     <div class="bxslider">
     <div>
-        <?php $tech0 = $customer->load($tech_array[0]);$avatar0 = $tech->getAvatarImage()?>
+        <?php $tech0 = $customer->load($tech_array[0]);$avatar0 = $tech0->getAvatarImage()?>
         <a href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$tech_array[0]));?>"> <img src="<?php if($avatar0) { echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($tech0->getAvatarImage(), '/');}else{ echo $this->getSkinUrl('images/dummy.jpg');} ?>" /> </a>
       <p><?php echo $tech0->getName();?></p>
       <p><?php echo ($this->getCatname($tech0->getMemberCategory()) != "")?$this->getCatname($tech0->getMemberCategory()):'&nbsp;';?></p>
