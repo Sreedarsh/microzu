@@ -1,62 +1,7 @@
 <?php $packages = $this->getPackages()?>
 <div class="ms-membership">
-    <div id="category_selection" style="width: 33%;padding: 25px;">
-   <?php $session =  Mage::getSingleton('customer/session');
-   if($session->isLoggedIn()):
-   ?>
-    <?php $attribute = Mage::getModel('eav/config')->getAttribute('customer','member_category');  ?>    
-                    <label for="member_category"  style="font-weight: bold;"><?php echo $this->__('Category') ?></label>
-                    <div class="input-box"> 
-                    <?php $category_id = $session->getCustomer()->getMemberCategory();?>
-                        <select name="member_category" id="member_category" class="<?php if($flag == 1){?>required-entry<?php } ?>" onchange="GetSelectedTextValue(this)">
-                            <?php
-                                 $options = $attribute->getSource()->getAllOptions(); 
-                              
-                                 foreach($options as $option){
-                            ?>
-                                <option value='<?php echo $option['value']?>' <?php if($category_id == $option['value']):?> selected="selected" <?php endif;?>>   <?php echo $this->__($option['label'])?></option>
-                            <?php } ?>
-                        </select>
-                        <div id="price_change"></div>
-                       </div>                                       
-                    <script type="text/javascript">
-    function GetSelectedTextValue(member_category) {
-
-new Ajax.Request('<?php echo Mage::getUrl('hireme/index/category');?>Getcategory?catid=' + member_category.value,
-                {
-                    method: "get",
-                    onSuccess: function (transport) {
-                        
-                        alert(transport.responseText);
-                        
-                    },
-                    onFailure: function () {
-                        alert("Something went wrong...")
-                    }
-                });
-
-
-    }
-</script>
-<script>
-
-function triggerMe() {
-    var cat = document.getElementById("member_category");
-     if (cat.value == ""){
-    alert("Please select a category");  
-    document.getElementById("category_selection").style.background = "red";
-    return false;
-   
-  }
- 
-}
-</script>
-    <?php endif;?>
-
-    </div>
-
 	<div class="page-title form-group">
-		<h1><?php echo $this->__('Welcome To Microzu Membership Program') ?></h1>
+		<h1><?php echo $this->__('Welcome To Our Membership Program') ?></h1>
 	</div>
 	<?php	echo($this->getWelcomeMessage());?>
 	<div class="membership-steps form-group" id="membership-signup-steps">
@@ -106,7 +51,7 @@ function triggerMe() {
 					switch($buyButton) {
 						case 1: ?>
 							<!-- Sign Up Now -->
-							<div class="action col-sm-6 col-xs-6 col-tn-12"><a href='<?php echo Mage::getUrl('membership/index/addToCartUrl',array('productId'=>$package->getProductId()))?>' <?php if($session->isLoggedIn()):?> onclick="return triggerMe(); <?php endif;?>">Sign Up Now</a></div>
+							<div class="action col-sm-6 col-xs-6 col-tn-12"><a href='<?php echo Mage::getUrl('membership/index/addToCartUrl',array('productId'=>$package->getProductId()))?>'>Sign Up Now</a></div>
 							<!-- Signed Up -->
 							<?php break;
 						case 2: ?>
