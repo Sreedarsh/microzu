@@ -8,55 +8,58 @@
  */
 ?>
 
-<?php $technicians = $this->retriveTechlist();
+<?php
+$technicians = $this->retriveTechlist();
 $customer = Mage::getModel('customer/customer');
-$tech = $this->getTech();
-
 ?>
 
-    <div class="container tech">
-        
-        <h2 style="padding:20px 0;">Select a technician</h2>
-              <div class="row">
-                
-                  <?php if(count($technicians) > 0):?>
-                  
-                 
-                  
-                  
-               <?php foreach($technicians as $user):
-                   $member = $customer->load($user->getCustomerId());
+<div class="container tech">
 
-                   ?>   
-               <div class="col-md-3 col-sm-6" style="margin-bottom:30px;">
+    <h2 style="padding:20px 0;">Select a technician</h2>
+    <div class="row">
+
+        <?php if (count($technicians) > 0): ?>
+
+
+
+
+            <?php
+            foreach ($technicians as $user):
+                $member = $customer->load($user->getCustomerId());
+                $member_id = $this->getTechPackage($user->getCustomerId());
+                $package_id = $this->getPackage($member_id);
+                ?>   
+                <div class="col-md-3 col-sm-6" style="margin-bottom:30px;">
                     <div class="our-team">
                         
+                        
+                        <div class="pack-label">
+                        <a> <?php echo $this->getPackagedetails($package_id); ?></a>
+                        </div>
                         <div class="team-content">                            
                             <div class="pic"> 
-                            <?php if(!$member->getAvatarImage()):?>
-                            <img alt="avatar" src="http://www.jainvivah.in/themes/site/images/d.png">
-                            <?php else :?>
-                            <img class="img-responsive" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($member->getAvatarImage(), '/'); ?>" />
-                            <?php endif;?>
-                        </div>
-                            <h3 class="post-title"><?php echo $member->getName(); ?><small><?php echo $this->getCatname($member->getMemberCategory());?></small></h3>
-                           <p class="description"><a class="btn btn-success" href="<?php echo Mage::getUrl('hireme/technician', array('id'=>$member->getId()));?>">Get Details</a></p>
+                                <?php if (!$member->getAvatarImage()): ?>
+                                    <img alt="avatar" src="http://www.jainvivah.in/themes/site/images/d.png">
+                                <?php else : ?>
+                                    <img class="img-responsive" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'customer/' . ltrim($member->getAvatarImage(), '/'); ?>" />
+        <?php endif; ?>
+                            </div>
+                            <h3 class="post-title"><?php echo $member->getName(); ?><small><?php echo $this->getCatname($member->getMemberCategory()); ?></small></h3>
+                            <p class="description"><a class="btn btn-success" href="<?php echo Mage::getUrl('hireme/technician', array('id' => $member->getId())); ?>">Get Details</a></p>
                         </div>
                     </div>
                 </div> 
-                 <?php endforeach;?> 
-                  <?php else:?>
-                  
-                  No technicians available in this category
-                  
-                  <?php endif;?>
-                
-            </div>
-        </div>
-    
-    
-    
-        
+            <?php endforeach; ?> 
+<?php else: ?>
+
+            No technicians available in this category
+
+<?php endif; ?>
+
+    </div>
+</div>
+
+
 
 
 
