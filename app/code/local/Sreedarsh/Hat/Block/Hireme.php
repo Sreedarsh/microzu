@@ -24,6 +24,11 @@ class Sreedarsh_Hat_Block_Hireme extends Mage_Core_Block_Template {
       return $technician;     
     }
     
+    public function getTechPackage($user)
+    {
+      $technician = Mage::getModel('membership/member')->load($user,'customer_id');
+      return $technician->getMemberId();     
+    }
     
     public function getPackage($memberid){
       $mempackage_model =  Mage::getModel('membership/memberpackage');
@@ -31,6 +36,10 @@ class Sreedarsh_Hat_Block_Hireme extends Mage_Core_Block_Template {
       return $member_load->getPackageId();
     }
     
+    public function getPackagedetails($packageid){
+      $package =  Mage::getModel('membership/package')->load($packageid);
+      return $package->getPackageName();
+    }
     
     public function getDetails($member_id) {
         
