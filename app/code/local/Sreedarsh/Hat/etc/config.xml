@@ -5,7 +5,7 @@
  * @package       Sreedarsh_Hat
  * @author Sreedarsh <sreedarsh88@gmail.com>
  */-->
-<config>
+<config> 
     <modules>
         <Sreedarsh_Hat>
             <version>0.0.1</version>
