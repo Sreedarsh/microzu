@@ -1,0 +1,32 @@
+[12-Nov-2016 06:13:21 UTC] PHP Parse error:  syntax error, unexpected 'require_once' (T_REQUIRE_ONCE) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[12-Nov-2016 06:13:49 UTC] PHP Parse error:  syntax error, unexpected 'require_once' (T_REQUIRE_ONCE) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[12-Nov-2016 06:55:52 UTC] PHP Parse error:  syntax error, unexpected 'require_once' (T_REQUIRE_ONCE) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[12-Nov-2016 07:05:07 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 3
+[15-Nov-2016 10:33:54 UTC] PHP Parse error:  syntax error, unexpected 'require_once' (T_REQUIRE_ONCE) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 10:34:54 UTC] PHP Parse error:  syntax error, unexpected 'require_once' (T_REQUIRE_ONCE) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 10:36:46 UTC] PHP Parse error:  syntax error, unexpected 'Mage' (T_STRING) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 10:38:47 UTC] PHP Parse error:  syntax error, unexpected 'Mage' (T_STRING) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 10:40:28 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 10:42:04 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 10:48:38 UTC] PHP Parse error:  syntax error, unexpected 'Mage' (T_STRING) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 10:49:33 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 10:49:35 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 10:51:14 UTC] PHP Parse error:  syntax error, unexpected 'Ced_CsProduct_VproductsControl' (T_STRING) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 10:54:33 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 10:56:35 UTC] PHP Parse error:  syntax error, unexpected 'susu' (T_STRING) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 10:58:01 UTC] PHP Parse error:  syntax error, unexpected 'class' (T_CLASS) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 11:00:53 UTC] PHP Parse error:  syntax error, unexpected 'require_once' (T_REQUIRE_ONCE) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 11:01:54 UTC] PHP Parse error:  syntax error, unexpected 'Mage' (T_STRING) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 11:02:38 UTC] PHP Parse error:  syntax error, unexpected 'Mage' (T_STRING) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 11:02:55 UTC] PHP Parse error:  syntax error, unexpected 'Mage' (T_STRING) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 11:03:30 UTC] PHP Parse error:  syntax error, unexpected 'Mage' (T_STRING) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 11:03:31 UTC] PHP Parse error:  syntax error, unexpected 'Mage' (T_STRING) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[15-Nov-2016 11:04:34 UTC] PHP Parse error:  syntax error, unexpected 'Mage' (T_STRING) in /home/microzu/public_html/mage/app/code/local/Ced/CsProduct/controllers/VproductsController.php on line 1
+[24-Nov-2016 05:48:53 UTC] PHP Parse error:  syntax error, unexpected 'hire' (T_STRING) in /home/microzu/public_html/mage/app/design/frontend/default/microzu/template/page/html/header.phtml on line 118
+[24-Nov-2016 05:48:57 UTC] PHP Parse error:  syntax error, unexpected 'hire' (T_STRING) in /home/microzu/public_html/mage/app/design/frontend/default/microzu/template/page/html/header.phtml on line 118
+[29-Dec-2016 15:38:18 Europe/Moscow] PHP Warning:  POST Content-Length of 14178916 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[29-Dec-2016 13:05:54 UTC] PHP Fatal error:  Maximum execution time of 90 seconds exceeded in /home/microzu/public_html/mage/app/code/core/Zend/Db/Select.php on line 973
+[29-Dec-2016 13:08:48 UTC] PHP Fatal error:  Maximum execution time of 90 seconds exceeded in /home/microzu/public_html/mage/app/code/core/Zend/Db/Statement.php on line 141
+[06-Jan-2017 08:13:01 UTC] PHP Fatal error:  Maximum execution time of 90 seconds exceeded in /home/microzu/public_html/mage/app/Mage.php on line 801
+[06-Jan-2017 08:16:52 UTC] PHP Fatal error:  Maximum execution time of 90 seconds exceeded in /home/microzu/public_html/mage/lib/Varien/Db/Adapter/Pdo/Mysql.php on line 1374
+[06-Jan-2017 08:25:54 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 5072 bytes) in /home/microzu/public_html/mage/app/code/core/Mage/Catalog/Helper/Product/Url.php on line 129
